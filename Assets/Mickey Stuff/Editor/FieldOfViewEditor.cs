@@ -5,12 +5,12 @@ using UnityEditor.Experimental.GraphView;
 
 
 
-[CustomEditor(typeof(FieldOfView))]
+[CustomEditor(typeof(GuardBehavior))]
 public class FieldOfViewEditor : Editor
 {
     void OnSceneGUI()
     {
-        FieldOfView fov = (FieldOfView)target;
+        GuardBehavior fov = (GuardBehavior)target;
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.radius);
         Vector3 viewAngle1 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.angle / 2);
