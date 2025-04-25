@@ -3381,6 +3381,7 @@ MonoBehaviour:
   environment:
     serializedVersion: 2
     m_Bits: 8
+  maxMove: 10
 --- !u!1 &1178997300
 GameObject:
   m_ObjectHideFlags: 0

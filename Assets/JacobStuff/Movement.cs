@@ -8,13 +8,13 @@ public class Movement : MonoBehaviour
     [SerializeField] GameObject connector;
 
     [SerializeField] float swingDistance;
-    //NOTE: circleRadius must be less than or equal to swingRadius
     [SerializeField] float swingSpeed;
     [SerializeField] float wallSpacing;
 
     [SerializeField] LayerMask environment;
 
     bool redSwinging;
+    [SerializeField] float maxMove;
 
     void Update()
     {
@@ -88,9 +88,16 @@ public class Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, environment);
         if(hit)
         {
-            red.transform.position = hit.point;
+            //Do final interpolation
+            if(Vector2.Distance(hit.point, red.transform.position) > maxMove * Time.deltaTime) red.transform.position = (Vector2)red.transform.position + (hit.point - (Vector2)red.transform.position).normalized * maxMove * Time.deltaTime;
+            else red.transform.position = hit.point;
         }
-        else red.transform.position = desiredPos;
+        else
+        {
+            //Do final interpolation
+            if(Vector2.Distance(desiredPos, red.transform.position) > maxMove * Time.deltaTime) red.transform.position = (Vector2)red.transform.position + (desiredPos - (Vector2)red.transform.position).normalized * maxMove * Time.deltaTime;
+            else red.transform.position = desiredPos;
+        }
     }
 
     void BlueSwingCasted()
@@ -107,11 +114,19 @@ public class Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, environment);
         if(hit)
         {
-            blue.transform.position = hit.point;
+            //Do final interpolation
+            if(Vector2.Distance(hit.point, blue.transform.position) > maxMove * Time.deltaTime) blue.transform.position = (Vector2)blue.transform.position + (hit.point - (Vector2)blue.transform.position).normalized * maxMove * Time.deltaTime;
+            else blue.transform.position = hit.point;
         }
-        else blue.transform.position = desiredPos;
+        else
+        {
+            //Do final interpolation
+            if(Vector2.Distance(desiredPos, blue.transform.position) > maxMove * Time.deltaTime) blue.transform.position = (Vector2)blue.transform.position + (desiredPos - (Vector2)blue.transform.position).normalized * maxMove * Time.deltaTime;
+            else blue.transform.position = desiredPos;
+        }
     }
 
+    /*
     void RedSwing()
     {
         //Get current angle between players
@@ -135,6 +150,7 @@ public class Movement : MonoBehaviour
         angle += Time.deltaTime * swingSpeed;
         blue.transform.position = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
     }
+    */
 
     void SwapVisuals()
     {
