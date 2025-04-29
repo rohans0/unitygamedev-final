@@ -3,18 +3,22 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
+    [Header("Object References")]
     [SerializeField] GameObject red;
     [SerializeField] GameObject blue;
     [SerializeField] GameObject connector;
 
+    [Header("Movement Settings")]
     [SerializeField] float swingDistance;
     [SerializeField] float swingSpeed;
+    //how much space to leave between the swinging player and the wall when attempting to swap swingers while current swinger is touching a wall
     [SerializeField] float wallSpacing;
-
-    [SerializeField] LayerMask environment;
-
-    bool redSwinging;
+    //maxMove affects the movement smoothing/interpolation. lower values will be smoother but slower
     [SerializeField] float maxMove;
+
+    [Header("Other")]
+    [SerializeField] LayerMask wallLayer;
+    [HideInInspector] public bool redSwinging;
 
     void Update()
     {
@@ -40,7 +44,7 @@ public class Movement : MonoBehaviour
                 angle -= Time.deltaTime * swingSpeed;
                 Vector2 desiredPos = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
 
-                RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, environment);
+                RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
                 if(hit)
                 {
                     red.transform.position = hit.point + (hit.normal * wallSpacing);
@@ -58,7 +62,7 @@ public class Movement : MonoBehaviour
                 angle -= Time.deltaTime * swingSpeed;
                 Vector2 desiredPos = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
 
-                RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, environment);
+                RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
                 if(hit)
                 {
                     blue.transform.position = hit.point + (hit.normal * wallSpacing);
@@ -85,7 +89,7 @@ public class Movement : MonoBehaviour
         angle -= Time.deltaTime * swingSpeed;
         Vector2 desiredPos = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
 
-        RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, environment);
+        RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
         if(hit)
         {
             //Do final interpolation
@@ -111,7 +115,7 @@ public class Movement : MonoBehaviour
         angle += Time.deltaTime * swingSpeed;
         Vector2 desiredPos = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
 
-        RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, environment);
+        RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
         if(hit)
         {
             //Do final interpolation
@@ -125,32 +129,6 @@ public class Movement : MonoBehaviour
             else blue.transform.position = desiredPos;
         }
     }
-
-    /*
-    void RedSwing()
-    {
-        //Get current angle between players
-        Vector2 pivot = blue.transform.position;
-        Vector2 currentPos = red.transform.position;
-        float angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized);
-
-        //Place the swinging player where they should be if the angle was slightly increased
-        angle -= Time.deltaTime * swingSpeed;
-        red.transform.position = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
-    }
-
-    void BlueSwing()
-    {
-        //Get current angle between players
-        Vector2 pivot = red.transform.position;
-        Vector2 currentPos = blue.transform.position;
-        float angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized);
-
-        //Place the swinging player where they should be if the angle was slightly increased
-        angle += Time.deltaTime * swingSpeed;
-        blue.transform.position = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
-    }
-    */
 
     void SwapVisuals()
     {
