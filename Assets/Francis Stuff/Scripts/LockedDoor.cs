@@ -11,18 +11,18 @@ public class LockedDoor : MonoBehaviour
     public float openingSpeed = 3.0f;
     private void Start()
     {
-        initialPosition = transform.localPosition;
+        initialPosition = transform.position;
         targetPosition = initialPosition;
     }
 
     private void Update()
     {
-        transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPosition, openingSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, openingSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") && km.hasKey && !unlocked)
+        if(other.CompareTag("PlayerObject") && km.hasKey && !unlocked)
         {
             unlocked = true;
             targetPosition = initialPosition + offset;
