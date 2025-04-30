@@ -121,19 +121,19 @@ public class GuardBehavior : MonoBehaviour
                 if (hit.collider == null)
                 {
                     canSeePlayer = true;
-                    Debug.Log("Can see player");
+                    //Debug.Log("Can see player");
                     chase = true; // Set chase to true when player is detected
                 }
                 else
                 {
                     canSeePlayer = false;
-                    Debug.Log("Can't see player");
+                    //Debug.Log("Can't see player");
                 }
             }
             else
             {
                 canSeePlayer = false;
-                Debug.Log("Can't see player");
+                //Debug.Log("Can't see player");
             }
         }
         else if (canSeePlayer)
@@ -147,7 +147,7 @@ public class GuardBehavior : MonoBehaviour
         if (collision.gameObject == ActivePlayer)
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("DemoScene"); // Load scene 0 on collision with the active player
-            Debug.Log("Collided with active player. Loading scene 0.");
+            //Debug.Log("Collided with active player. Loading scene 0.");
         }
     }
 }
