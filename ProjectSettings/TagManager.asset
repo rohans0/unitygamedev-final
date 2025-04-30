@@ -9,6 +9,8 @@ TagManager:
   - Crate
   - Key
   - PlayerObject
+  - Blue Player
+  - Red Player
   layers:
   - Default
   - TransparentFX

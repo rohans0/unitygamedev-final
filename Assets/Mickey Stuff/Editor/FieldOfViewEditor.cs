@@ -12,7 +12,7 @@ public class FieldOfViewEditor : Editor
     {
         GuardBehavior fov = (GuardBehavior)target;
         Handles.color = Color.white;
-        Handles.DrawWireArc(fov.transform.position, Vector3.up, Vector3.forward, 360, fov.radius);
+        Handles.DrawWireArc(fov.transform.position, Vector3.back, Vector3.right, 360, fov.radius);
         Vector3 viewAngle1 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.angle / 2);
         Vector3 viewAngle2 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.angle / 2);
 
@@ -30,6 +30,6 @@ public class FieldOfViewEditor : Editor
     private Vector3 DirectionFromAngle(float eulereY, float anglesInDegrees)
     {
         anglesInDegrees += eulereY;
-        return new Vector3(Mathf.Sin(anglesInDegrees * Mathf.Deg2Rad), 0, Mathf.Cos(anglesInDegrees * Mathf.Deg2Rad));
+        return new Vector3(Mathf.Sin(anglesInDegrees * Mathf.Deg2Rad), Mathf.Cos(anglesInDegrees * Mathf.Deg2Rad), 0);
     }
 }
