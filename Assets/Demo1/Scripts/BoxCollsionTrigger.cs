@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BoxCollision : MonoBehaviour
+public class BoxCollisionTrigger : MonoBehaviour
 {
     private Rigidbody2D rb;
     private Vector2 cNormal;
@@ -11,13 +11,11 @@ public class BoxCollision : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     
-    void OnCollisionEnter2D(Collision2D c)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("COL" + c.gameObject.name);
-        if (c.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Player") || other.CompareTag("Red Player") || other.CompareTag("Blue Player"))
         {
-            Debug.Log("PLAYER COL");
-            cNormal = c.contacts[0].normal;
+            cNormal = (transform.position - other.transform.position).normalized;
             rb.AddForce(cNormal * hitForce, ForceMode2D.Impulse);
         }
     }
