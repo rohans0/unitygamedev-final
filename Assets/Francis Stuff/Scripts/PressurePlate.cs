@@ -12,14 +12,14 @@ public class PressurePlate : MonoBehaviour
 
     private void Start()
     {
-        initialPosition = door.transform.position; 
+        initialPosition = door.transform.localPosition; 
         targetPosition = initialPosition;
     }
 
     // Continually moves door based on current target position
     private void Update()
     {
-        door.transform.position = Vector3.MoveTowards(door.transform.position, targetPosition, openingSpeed * Time.deltaTime);
+        door.transform.localPosition = Vector3.MoveTowards(door.transform.localPosition, targetPosition, openingSpeed * Time.deltaTime);
     }
 
     // Why was I dumb and not using 2D versions of below methods :(

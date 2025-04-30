@@ -3,7 +3,6 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
-using UnityEditor.Experimental.GraphView;
 
 public class GuardBehavior : MonoBehaviour
 {
@@ -144,10 +143,18 @@ public class GuardBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject == ActivePlayer)
+        if (collision.transform.CompareTag("Red Player") || collision.transform.CompareTag("Blue Player"))
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("DemoScene"); // Load scene 0 on collision with the active player
             //Debug.Log("Collided with active player. Loading scene 0.");
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Connector"))
+        {
+            Destroy(gameObject);
         }
     }
 }

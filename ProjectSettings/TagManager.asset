@@ -18,8 +18,8 @@ TagManager:
   - Environment
   - Water
   - UI
-  - 
-  - 
+  - Guard
+  - PressurePlate
   - Target
   - Object
   - BoxHitter

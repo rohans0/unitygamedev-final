@@ -13,10 +13,8 @@ public class BoxCollision : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D c)
     {
-        Debug.Log("COL" + c.gameObject.name);
-        if (c.gameObject.CompareTag("Player"))
+        if (c.transform.CompareTag("Player") || c.transform.CompareTag("Red Player") || c.transform.CompareTag("Blue Player"))
         {
-            Debug.Log("PLAYER COL");
             cNormal = c.contacts[0].normal;
             rb.AddForce(cNormal * hitForce, ForceMode2D.Impulse);
         }
