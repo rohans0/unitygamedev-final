@@ -7,10 +7,10 @@ TagManager:
   - Guard
   - VisCone
   - Crate
-  - Key
   - PlayerObject
   - Blue Player
   - Red Player
+  - Connector
   layers:
   - Default
   - TransparentFX

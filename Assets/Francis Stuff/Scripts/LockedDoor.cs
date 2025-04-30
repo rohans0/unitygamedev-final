@@ -22,7 +22,7 @@ public class LockedDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.CompareTag("Player") && km.hasKey && !unlocked)
+        if((other.CompareTag("Player") || other.CompareTag("Red Player") || other.CompareTag("Blue Player")) && km.hasKey && !unlocked)
         {
             unlocked = true;
             targetPosition = initialPosition + offset;
