@@ -9,6 +9,6 @@ PhysicsMaterial2D:
   m_Name: BoxPhysicsMaterial
   serializedVersion: 2
   friction: 0
-  bounciness: 0.7
+  bounciness: 0.9
   m_FrictionCombine: 0
   m_BounceCombine: 0
