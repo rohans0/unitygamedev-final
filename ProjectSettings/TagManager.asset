@@ -7,7 +7,6 @@ TagManager:
   - Guard
   - VisCone
   - Crate
-  - PlayerObject
   - Blue Player
   - Red Player
   - Connector

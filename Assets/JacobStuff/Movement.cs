@@ -10,6 +10,8 @@ public class Movement : MonoBehaviour
 
     [Header("Movement Settings")]
     [SerializeField] float swingDistance;
+    [SerializeField] Vector2 swingDistanceBounds;
+    [SerializeField] float distanceChangeSpeed;
     [SerializeField] float swingSpeed;
     //how much space to leave between the swinging player and the wall when attempting to swap swingers while current swinger is touching a wall
     [SerializeField] float wallSpacing;
@@ -20,18 +22,42 @@ public class Movement : MonoBehaviour
     [SerializeField] LayerMask wallLayer;
     [HideInInspector] public bool redSwinging;
 
-    void Update()
+    [Header("Visuals")]
+    [SerializeField] Sprite redSwing;
+    [SerializeField] Sprite redStill;
+    [SerializeField] Sprite blueSwing;
+    [SerializeField] Sprite blueStill;
+
+    void LateUpdate()
     {
         //Control connector position
-        connector.transform.localScale = new Vector2(connector.transform.localScale.x, Vector2.Distance(blue.transform.position, red.transform.position) * 2f);
+        connector.transform.localScale = new Vector2(connector.transform.localScale.x, swingDistance - 1f);
         connector.transform.position = (blue.transform.position + red.transform.position) / 2f;
-        connector.transform.rotation = Quaternion.LookRotation(Vector3.forward, blue.transform.position - red.transform.position);
+        connector.transform.rotation = Quaternion.LookRotation(Vector3.forward, red.transform.position - blue.transform.position);
+
+        red.transform.rotation = Quaternion.LookRotation(Vector3.forward, red.transform.position - blue.transform.position);
+        blue.transform.rotation = Quaternion.LookRotation(Vector3.forward, red.transform.position - blue.transform.position);
+    }
+
+    void Update()
+    {
+        //Handle swing size changes
+        if(Input.GetKey(KeyCode.A))
+        {
+            swingDistance -= distanceChangeSpeed * Time.deltaTime;
+        }
+        if(Input.GetKey(KeyCode.D))
+        {
+            swingDistance += distanceChangeSpeed * Time.deltaTime;
+        }
+        if(swingDistance < swingDistanceBounds.x) swingDistance = swingDistanceBounds.x;
+        if(swingDistance > swingDistanceBounds.y) swingDistance = swingDistanceBounds.y;
+
+
 
         //Handle swapping swingers
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            SwapVisuals();
-
             //Move new stationary player slightly away from wall to prevent bugs
             if(redSwinging)
             {
@@ -71,6 +97,7 @@ public class Movement : MonoBehaviour
             }
 
             redSwinging = !redSwinging;
+            UpdateVisuals();
         }
 
         //Update functions depending on which is swinging
@@ -130,25 +157,17 @@ public class Movement : MonoBehaviour
         }
     }
 
-    void SwapVisuals()
+    void UpdateVisuals()
     {
-        if(red.transform.GetChild(1).gameObject.activeInHierarchy)
+        if(redSwinging)
         {
-            //Change red from stopped to swinging
-            red.transform.GetChild(1).gameObject.SetActive(false);
-            red.transform.GetChild(0).gameObject.SetActive(true);
-
-            blue.transform.GetChild(1).gameObject.SetActive(true);
-            blue.transform.GetChild(0).gameObject.SetActive(false);
+            red.GetComponent<SpriteRenderer>().sprite = redSwing;
+            blue.GetComponent<SpriteRenderer>().sprite = blueStill;
         }
         else
         {
-            //Change red from swinging to stopped
-            red.transform.GetChild(1).gameObject.SetActive(true);
-            red.transform.GetChild(0).gameObject.SetActive(false);
-
-            blue.transform.GetChild(1).gameObject.SetActive(false);
-            blue.transform.GetChild(0).gameObject.SetActive(true);
+            red.GetComponent<SpriteRenderer>().sprite = redStill;
+            blue.GetComponent<SpriteRenderer>().sprite = blueSwing;
         }
     }
 }

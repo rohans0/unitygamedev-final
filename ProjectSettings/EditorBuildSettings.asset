@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Demo1/DemoMenu.unity
+    path: Assets/Demo/DemoMenu.unity
     guid: 0a248267d6860a04fb36238dfa590106
   - enabled: 1
-    path: Assets/Demo1/DemoScene.unity
+    path: Assets/Demo/DemoScene.unity
     guid: f146cd923e990594eafd2921646360b2
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

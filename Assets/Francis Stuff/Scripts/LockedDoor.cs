@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class LockedDoor : MonoBehaviour
 {
-    public KeyManager km;
     private Vector3 targetPosition;
     private Vector3 initialPosition;
     private bool unlocked = false;
@@ -22,8 +21,9 @@ public class LockedDoor : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if((other.CompareTag("Player") || other.CompareTag("Red Player") || other.CompareTag("Blue Player")) && km.hasKey && !unlocked)
+        if((other.CompareTag("Player") || other.CompareTag("Red Player") || other.CompareTag("Blue Player")) && KeyManager.Instance.keys > 0 && !unlocked)
         {
+            KeyManager.Instance.keys--;
             unlocked = true;
             targetPosition = initialPosition + offset;
         }
