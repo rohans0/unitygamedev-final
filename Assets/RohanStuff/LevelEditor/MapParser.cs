@@ -7,10 +7,20 @@ public class MapParser : MonoBehaviour
     [SerializeField] private GameObject guardPrefab;
     [SerializeField] private GameObject wallPrefab;
     [SerializeField] private string path = null;
+    
+
+    enum a
+    {
+        WALL = '1',
+        KEY,
+        GUARD,
+        // WA,
+        // WALL = '1',
+    };
 
     void Start()
     {
-        if (path == null) path = "Assets/RohanStuff/LevelEditor/map.txt";
+        if (path == null) path = "Assets/RohanStuff/LevelEditor/map2.txt";
         if (File.Exists(path))
         {
             using StreamReader reader = new(path);
@@ -18,22 +28,20 @@ public class MapParser : MonoBehaviour
             int i = 0;
             while ((charValue = reader.Read()) != -1)
             {
-                char character = (char)charValue;
-                switch (character)
+                if (charValue < '0') continue;
+                Vector2 pos = new(-.4f+((i%9)*.1f), .4f-((i/9)*.1f));
+                switch ((a)(charValue))
                 {
-                    case ' ':
-                    case '\n':
-                        continue;
-                    case '1':
+                    case a.WALL:
                         GameObject wall = Instantiate(wallPrefab, transform);
-                        wall.transform.localPosition = new Vector2(-.4f+((i%9)*.1f), .4f-((i/9)*.1f));
+                        wall.transform.localPosition = pos;
                         wall.transform.localScale = new Vector2(.07f, .07f);
                         break;
-                    case '2':
-                        Instantiate(keyPrefab, transform).transform.localPosition = new Vector2(-.4f+((i%9)*.1f), .4f-((i/9)*.1f));
+                    case a.KEY:
+                        Instantiate(keyPrefab, transform).transform.localPosition = pos;
                         break;
-                    case '3':
-                        Instantiate(guardPrefab, transform).transform.localPosition = new Vector2(-.4f+((i%9)*.1f), .4f-((i/9)*.1f));
+                    case a.GUARD:
+                        Instantiate(guardPrefab, transform).transform.localPosition = pos;
                         break;
                     default:
                         break;

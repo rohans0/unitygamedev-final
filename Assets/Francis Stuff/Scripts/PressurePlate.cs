@@ -3,23 +3,27 @@ using UnityEngine;
 public class PressurePlate : MonoBehaviour
 {
     public GameObject door;
-    // Dictates how far door will move once pressure plate is pressed
-    public Vector3 offset;
-    public float openingSpeed = 3.0f;
+    public float doorOpenSpeed = 1.0f;
+    public float doorCloseSpeed = 0.05f;
+    private float doorCurSpeed;
 
-    private Vector3 initialPosition;
-    private Vector3 targetPosition;
+    private Vector3 doorInitPos;
+    // Dictates how far door will move once pressure plate is pressed
+    public Vector3 doorCloseOffset;
+    private Vector3 doorCurTargetPos;
 
     private void Start()
     {
-        initialPosition = door.transform.localPosition; 
-        targetPosition = initialPosition;
+        doorInitPos = door.transform.localPosition; 
+        doorCurTargetPos = doorInitPos;
+        doorCurSpeed = doorCloseSpeed;
     }
 
     // Continually moves door based on current target position
     private void Update()
     {
-        door.transform.localPosition = Vector3.MoveTowards(door.transform.localPosition, targetPosition, openingSpeed * Time.deltaTime);
+        door.transform.localPosition =
+            Vector3.MoveTowards(door.transform.localPosition, doorCurTargetPos, doorCurSpeed * Time.deltaTime);
     }
 
     // Why was I dumb and not using 2D versions of below methods :(
@@ -28,8 +32,8 @@ public class PressurePlate : MonoBehaviour
         // If pressure plate collides with crate apply offset to door
         if (other.CompareTag("Crate")) 
         {
-            targetPosition = initialPosition + offset;
-            Debug.Log("Crate Collided");
+            doorCurSpeed = doorOpenSpeed;
+            doorCurTargetPos = doorInitPos + doorCloseOffset;
         }
     }
     private void OnTriggerExit2D(Collider2D other)
@@ -37,7 +41,8 @@ public class PressurePlate : MonoBehaviour
         // If crate leaves pressure plate remove offset from door
         if (other.CompareTag("Crate")) 
         {
-            targetPosition = initialPosition;
+            doorCurSpeed = doorCloseSpeed;
+            doorCurTargetPos = doorInitPos;
         }
     }
 }
