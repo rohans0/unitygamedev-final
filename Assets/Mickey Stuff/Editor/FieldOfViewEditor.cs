@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 
-
+/*
 
 
 [CustomEditor(typeof(GuardBehavior))]
@@ -12,17 +12,17 @@ public class FieldOfViewEditor : Editor
     {
         GuardBehavior fov = (GuardBehavior)target;
         Handles.color = Color.white;
-        Handles.DrawWireArc(fov.transform.position, Vector3.back, Vector3.right, 360, fov.radius);
-        Vector3 viewAngle1 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.angle / 2);
-        Vector3 viewAngle2 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.angle / 2);
+        Handles.DrawWireArc(fov.transform.position, Vector3.back, Vector3.right, 360, fov.sightRadius);
+        Vector3 viewAngle1 = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.SightAngle / 2);
+        Vector3 viewAngle2 = DirectionFromAngle(fov.transform.eulerAngles.y, fov.SightAngle / 2);
 
         Handles.color = Color.red;
-        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle1 * fov.radius);
-        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle2 * fov.radius);
+        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle1 * fov.sightRadius);
+        Handles.DrawLine(fov.transform.position, fov.transform.position + viewAngle2 * fov.sightRadius);
 
-        if(fov.canSeePlayer){
+        if(fov.CanSeePlayer()){
             Handles.color = Color.green;
-            Handles.DrawLine(fov.transform.position, fov.playereref.transform.position);
+            Handles.DrawLine(fov.transform.position, fov.player.transform.position);
         }
 
     }
@@ -33,3 +33,4 @@ public class FieldOfViewEditor : Editor
         return new Vector3(Mathf.Sin(anglesInDegrees * Mathf.Deg2Rad), Mathf.Cos(anglesInDegrees * Mathf.Deg2Rad), 0);
     }
 }
+*/
