@@ -31,7 +31,7 @@ public class Movement : MonoBehaviour
     void LateUpdate()
     {
         //Control connector position
-        connector.transform.localScale = new Vector2(connector.transform.localScale.x, swingDistance - 1f);
+        connector.transform.localScale = new Vector2(connector.transform.localScale.x, Vector2.Distance(red.transform.position, blue.transform.position) - 1f);
         connector.transform.position = (blue.transform.position + red.transform.position) / 2f;
         connector.transform.rotation = Quaternion.LookRotation(Vector3.forward, red.transform.position - blue.transform.position);
 
