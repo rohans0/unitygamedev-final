@@ -45,8 +45,8 @@ Material:
     - _DissolveProgress: 0
     - _Progress: 1
     m_Colors:
-    - _Color1: {r: 0.8745098, g: 0.02745098, b: 0.4470588, a: 1}
-    - _Color2: {r: 0.043137237, g: 1, b: 0.9019608, a: 1}
+    - _Color1: {r: 0.99607843, g: 0.32941177, b: 0.43529412, a: 1}
+    - _Color2: {r: 0.003921569, g: 0.79607844, b: 0.8117647, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7852317085367240779
