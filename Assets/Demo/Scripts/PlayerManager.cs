@@ -6,6 +6,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] int maxHealth = 3;
     public int health;
 
+    public int score = 0;
+
     void Awake()
     {
         Instance = this;   

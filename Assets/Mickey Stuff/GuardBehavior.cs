@@ -100,6 +100,7 @@ public class GuardBehavior : MonoBehaviour
         if (other.CompareTag("Connector"))
         {
             GetComponent<Rigidbody2D>().simulated = false;
+            other.transform.parent.GetComponent<PlayerManager>().score+=5;
             currentState = GuardState.Stunned;
             transform.GetChild(1).GetComponent<DeathVisual>().PlayVisual();
         }
