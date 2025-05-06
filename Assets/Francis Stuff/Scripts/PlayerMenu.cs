@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class PlayerMenu : MonoBehaviour
 {
@@ -7,6 +8,7 @@ public class PlayerMenu : MonoBehaviour
     public GameObject deathMenuUI;
     public GameObject playerObject;
     public static bool isPaused;
+    public TextMeshProUGUI coinCountText;
 
     public void PauseGame()
     {
@@ -77,5 +79,7 @@ public class PlayerMenu : MonoBehaviour
         {
             Restart();
         }
+
+        coinCountText.text = ": " + PlayerManager.Instance.score.ToString();
     }
 }

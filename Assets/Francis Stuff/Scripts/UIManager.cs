@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
 {
     public TextMeshProUGUI keyCountText;
     public GameObject KeyManager;
+    public TextMeshProUGUI coinCountText;
 
     
     private void UpdateUI()
@@ -12,6 +13,7 @@ public class UIManager : MonoBehaviour
         // Get the KeyManager component from the KeyManager GameObject
         KeyManager keyManager = KeyManager.GetComponent<KeyManager>();
         keyCountText.text = "Keys: " + keyManager.keys.ToString();
+        coinCountText.text = ": " + PlayerManager.Instance.score.ToString();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
