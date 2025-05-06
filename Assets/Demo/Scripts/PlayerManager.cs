@@ -4,7 +4,9 @@ public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance;
     [SerializeField] int maxHealth = 3;
-    int health;
+    public int health;
+
+    public int score = 0;
 
     void Awake()
     {
