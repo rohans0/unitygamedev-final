@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
             {
                 Instantiate(onCollectEffect, transform.position, transform.rotation);
             }
-            other.transform.parent.GetComponent<PlayerManager>().health++;
+            PlayerManager.Instance.HealPlayer();
 
             // Destroy the coin
             Destroy(gameObject);

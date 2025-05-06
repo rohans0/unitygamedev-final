@@ -11,6 +11,9 @@ public class PressurePlate : MonoBehaviour
     // Dictates how far door will move once pressure plate is pressed
     public Vector3 doorCloseOffset;
     private Vector3 doorCurTargetPos;
+    public AudioClip PlateUpSound;
+    public AudioClip PlateDownSound;
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -32,6 +35,7 @@ public class PressurePlate : MonoBehaviour
         // If pressure plate collides with crate apply offset to door
         if (other.CompareTag("Crate")) 
         {
+            audioSource.PlayOneShot(PlateDownSound, 1);
             doorCurSpeed = doorOpenSpeed;
             doorCurTargetPos = doorInitPos + doorCloseOffset;
         }
@@ -41,6 +45,7 @@ public class PressurePlate : MonoBehaviour
         // If crate leaves pressure plate remove offset from door
         if (other.CompareTag("Crate")) 
         {
+            audioSource.PlayOneShot(PlateUpSound, 1);
             doorCurSpeed = doorCloseSpeed;
             doorCurTargetPos = doorInitPos;
         }

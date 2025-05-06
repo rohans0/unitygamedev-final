@@ -13,6 +13,8 @@ public class CamFollow : MonoBehaviour
 
     List<CamRoom> rooms = new List<CamRoom>();
     int currentRoom = -1;
+    public AudioClip CameraMoveSound;
+    public AudioSource audioSource;
 
     public enum CameraMode
     {
@@ -61,13 +63,17 @@ public class CamFollow : MonoBehaviour
         ) 
         {
             AssignRoom();
+            audioSource.PlayOneShot(CameraMoveSound, 1);
         }
 
         //Actually move camera to target room
         if(currentRoom == -1) return;
         Vector2 pos = rooms[currentRoom].transform.position;
-        if(Vector2.Distance(transform.position, pos) > maxMoveRoom * Time.deltaTime) pos = (Vector2)transform.position + ((pos - (Vector2)transform.position).normalized * maxMoveRoom * Time.deltaTime);
-        transform.position = (Vector3)pos + (Vector3.forward * transform.position.z);
+        if(Vector2.Distance(transform.position, pos) > maxMoveRoom * Time.deltaTime) {
+            pos = (Vector2)transform.position + ((pos - (Vector2)transform.position).normalized * maxMoveRoom * Time.deltaTime);
+            transform.position = (Vector3)pos + (Vector3.forward * transform.position.z);
+            
+        }
     }
 
     void AssignRoom()

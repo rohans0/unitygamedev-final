@@ -8,6 +8,10 @@ public class LockedDoor : MonoBehaviour
 
     public Vector3 offset;
     public float openingSpeed = 3.0f;
+
+    public AudioClip DoorOpenSound;
+    public AudioSource audioSource;
+
     private void Start()
     {
         initialPosition = transform.localPosition;
@@ -24,6 +28,7 @@ public class LockedDoor : MonoBehaviour
         if((other.CompareTag("Player") || other.CompareTag("Red Player") || other.CompareTag("Blue Player")) && KeyManager.Instance.keys > 0 && !unlocked)
         {
             KeyManager.Instance.keys--;
+            audioSource.PlayOneShot(DoorOpenSound, 1);
             unlocked = true;
             targetPosition = initialPosition + offset;
         }

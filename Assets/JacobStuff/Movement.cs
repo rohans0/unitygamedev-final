@@ -28,6 +28,9 @@ public class Movement : MonoBehaviour
     [SerializeField] Sprite blueSwing;
     [SerializeField] Sprite blueStill;
 
+    public AudioClip PlayerSwitchSound;
+    public AudioSource audioSource;
+
     void LateUpdate()
     {
         //Control connector position
@@ -37,6 +40,11 @@ public class Movement : MonoBehaviour
 
         red.transform.rotation = Quaternion.LookRotation(Vector3.forward, red.transform.position - blue.transform.position);
         blue.transform.rotation = Quaternion.LookRotation(Vector3.forward, red.transform.position - blue.transform.position);
+    }
+
+    void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -98,7 +106,10 @@ public class Movement : MonoBehaviour
 
             redSwinging = !redSwinging;
             UpdateVisuals();
+            audioSource.PlayOneShot(PlayerSwitchSound, 1);
         }
+
+        
 
         //Update functions depending on which is swinging
         if(redSwinging) RedSwingCasted();

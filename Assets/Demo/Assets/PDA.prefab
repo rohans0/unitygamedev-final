@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d19c74d0c81270541aa83819fa85ff77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onCollectEffect: {fileID: 0}
+  onCollectEffect: {fileID: 7839514358408870237, guid: 211582ffdfbe2af4da5d727adcaf035d, type: 3}
 --- !u!61 &7143752438600645851
 BoxCollider2D:
   m_ObjectHideFlags: 0

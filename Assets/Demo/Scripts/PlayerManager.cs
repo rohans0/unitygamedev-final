@@ -20,14 +20,15 @@ public class PlayerManager : MonoBehaviour
         GameUI.Instance.SetHealth(health);
     }
 
+    public void HealPlayer(){
+        health++;
+        if(health > maxHealth) health = maxHealth;
+        GameUI.Instance.SetHealth(health);
+    }
+
     public bool CanHeal()
     {
         return health < maxHealth;
     }
 
-    void Heal()
-    {
-        health++;
-        if(health > maxHealth) health = maxHealth;
-    }
 }
