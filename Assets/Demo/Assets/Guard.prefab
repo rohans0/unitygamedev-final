@@ -365,6 +365,8 @@ MonoBehaviour:
   viewHeight: 3
   stunTime: 1
   stunForce: 100
+  GuardDeathSound: {fileID: 8300000, guid: f563ee344b6dc984db1fb3f8df901d8e, type: 3}
+  audioSource: {fileID: 0}
   currentState: 1
 --- !u!195 &4648850146210325134
 NavMeshAgent:

@@ -20,7 +20,9 @@ public class PressurePlate : MonoBehaviour
         doorInitPos = door.transform.localPosition; 
         doorCurTargetPos = doorInitPos;
         doorCurSpeed = doorCloseSpeed;
+        audioSource = GameObject.Find("DoorSlidingAudio").GetComponent<AudioSource>();
     }
+
 
     // Continually moves door based on current target position
     private void Update()

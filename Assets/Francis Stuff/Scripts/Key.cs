@@ -4,9 +4,12 @@ public class Key : MonoBehaviour
 {
 
     public GameObject onCollectEffect;
-     public AudioClip KeyCollectSound;
+    public AudioClip KeyCollectSound;
     public AudioSource audioSource;
-
+    void Start()
+    {
+        audioSource = GameObject.Find("KeyPickupAudio").GetComponent<AudioSource>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {

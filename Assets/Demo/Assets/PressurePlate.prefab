@@ -105,6 +105,9 @@ MonoBehaviour:
   doorOpenSpeed: 3
   doorCloseSpeed: 0.5
   doorCloseOffset: {x: 0, y: 4, z: 0}
+  PlateUpSound: {fileID: 8300000, guid: 09f2628cd290eb04295a4b12ee3c1695, type: 3}
+  PlateDownSound: {fileID: 8300000, guid: e8e2973d624b9f445b369af9d12e65b8, type: 3}
+  audioSource: {fileID: 0}
 --- !u!58 &5648576284706033305
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -19,6 +19,9 @@ public class GuardBehavior : MonoBehaviour
     [SerializeField] float stunTime;
     [SerializeField] float stunForce;
 
+    public AudioClip GuardDeathSound;
+    public AudioSource audioSource;
+
     public GuardState currentState = GuardState.Idle;
     public enum GuardState
     {
@@ -30,6 +33,7 @@ public class GuardBehavior : MonoBehaviour
     public void PlayerDetected()
     {
         currentState = GuardState.Chase;
+        
     }
 
     private void Start()
@@ -40,6 +44,7 @@ public class GuardBehavior : MonoBehaviour
         player = KeyManager.Instance.gameObject;
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
+        audioSource = GameObject.Find("GuardDeathAudio").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -102,6 +107,8 @@ public class GuardBehavior : MonoBehaviour
             GetComponent<Rigidbody2D>().simulated = false;
             other.transform.parent.GetComponent<PlayerManager>().score+=5;
             currentState = GuardState.Stunned;
+            //play audio here!!
+            audioSource.PlayOneShot(GuardDeathSound, 1);
             transform.GetChild(1).GetComponent<DeathVisual>().PlayVisual();
         }
     }

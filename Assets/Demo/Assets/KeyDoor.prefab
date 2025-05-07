@@ -104,6 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 4, z: 0}
   openingSpeed: 3
+  DoorOpenSound: {fileID: 8300000, guid: f3e65a79e769e58499a50829f99e42c7, type: 3}
+  audioSource: {fileID: 0}
 --- !u!61 &6335132449663079119
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -148,3 +148,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onCollectEffect: {fileID: 679442189422735766, guid: 4f9c03d472f6fbd4298447f181ef2191, type: 3}
+  HealthCollectSound: {fileID: 8300000, guid: eca3b05e4f5a0de4681d5024182901a1, type: 3}
+  audioSource: {fileID: 0}
