@@ -3794,7 +3794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 442560605}
   deathMenuUI: {fileID: 2046107815}
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 1134148642}
   coinCountText: {fileID: 910335441}
 --- !u!114 &183736649
 MonoBehaviour:
@@ -8562,7 +8562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c41461d09bceb61409e9bb1b51e809b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 0}
+  healthText: {fileID: 2023857798}
 --- !u!1 &1041005411
 GameObject:
   m_ObjectHideFlags: 0
@@ -11000,6 +11000,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Object
       objectReference: {fileID: 0}
+    - target: {fileID: 7304251416496592771, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: keyImages.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7304251416496592771, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: 'keyImages.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1261639981}
+    - target: {fileID: 7304251416496592771, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: 'keyImages.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1836278280}
+    - target: {fileID: 7304251416496592771, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: 'keyImages.Array.data[2]'
+      value: 
+      objectReference: {fileID: 482552060}
+    - target: {fileID: 7304251416496592771, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: 'keyImages.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1528449492}
+    - target: {fileID: 7304251416496592771, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: 'keyImages.Array.data[4]'
+      value: 
+      objectReference: {fileID: 304519173}
+    - target: {fileID: 7304251416496592771, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: 'keyImages.Array.data[5]'
+      value: 
+      objectReference: {fileID: 1107720446}
+    - target: {fileID: 7304251416496592771, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: 'keyImages.Array.data[6]'
+      value: 
+      objectReference: {fileID: 461085873}
+    - target: {fileID: 7304251416496592771, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: 'keyImages.Array.data[7]'
+      value: 
+      objectReference: {fileID: 1812246053}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
