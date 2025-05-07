@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7220442591321148768}
   - component: {fileID: 3779403153120845276}
   - component: {fileID: 99441370886087527}
-  - component: {fileID: 5648576284706033305}
+  - component: {fileID: 4081605989359777991}
   m_Layer: 7
   m_Name: PressurePlate
   m_TagString: Untagged
@@ -108,8 +108,8 @@ MonoBehaviour:
   PlateUpSound: {fileID: 8300000, guid: 09f2628cd290eb04295a4b12ee3c1695, type: 3}
   PlateDownSound: {fileID: 8300000, guid: e8e2973d624b9f445b369af9d12e65b8, type: 3}
   audioSource: {fileID: 0}
---- !u!58 &5648576284706033305
-CircleCollider2D:
+--- !u!61 &4081605989359777991
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -143,4 +143,14 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.08, y: 0.08}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1.25, y: 1.25}
+  m_EdgeRadius: 0

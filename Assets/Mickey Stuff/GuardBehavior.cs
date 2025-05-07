@@ -109,6 +109,8 @@ public class GuardBehavior : MonoBehaviour
             currentState = GuardState.Stunned;
             //play audio here!!
             audioSource.PlayOneShot(GuardDeathSound, 1);
+			lineRenderer.enabled = false;
+            transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).GetComponent<DeathVisual>().PlayVisual();
         }
     }
