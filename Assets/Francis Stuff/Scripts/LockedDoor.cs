@@ -16,7 +16,7 @@ public class LockedDoor : MonoBehaviour
     {
         initialPosition = transform.localPosition;
         targetPosition = initialPosition;
-        audioSource = GameObject.Find("KeyPickupAudio").GetComponent<AudioSource>();
+        audioSource = GameObject.Find("DoorSlidingAudio").GetComponent<AudioSource>();
     }
 
     private void Update()

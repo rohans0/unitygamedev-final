@@ -148,3 +148,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onCollectEffect: {fileID: 8102538985649036216, guid: e4e117e4640414545a33d1ef701731a5, type: 3}
+  KeyCollectSound: {fileID: 8300000, guid: 1eb9873852abcaf428b03fdd6240cb78, type: 3}
+  audioSource: {fileID: 0}
