@@ -11,11 +11,11 @@ public class BoxCollision : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
     
-    void OnCollisionEnter2D(Collision2D c)
+    private void OnTriggerStay2D(Collider2D other)
     {
-        if (c.transform.CompareTag("Player") || c.transform.CompareTag("Red Player") || c.transform.CompareTag("Blue Player"))
+        if (other.transform.CompareTag("Player") || other.transform.CompareTag("Red Player") || other.transform.CompareTag("Blue Player"))
         {
-            cNormal = c.contacts[0].normal;
+            cNormal = (transform.transform.position - other.transform.position).normalized;//c.contacts[0].normal;
             rb.AddForce(cNormal * hitForce, ForceMode2D.Impulse);
         }
     }

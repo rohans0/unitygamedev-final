@@ -45,6 +45,10 @@ public class Movement : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+
+        Vector2 pivot = blue.transform.position;
+        Vector2 currentPos = red.transform.position;
+        float angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized);
     }
 
     void Update()
@@ -66,6 +70,7 @@ public class Movement : MonoBehaviour
         //Handle swapping swingers
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            angle += 180f;
             //Move new stationary player slightly away from wall to prevent bugs
             if(redSwinging)
             {
@@ -73,9 +78,10 @@ public class Movement : MonoBehaviour
                 Vector2 pivot = blue.transform.position;
                 Vector2 currentPos = red.transform.position;
                 float angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized);
+                //angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized);
 
                 //Place the swinging player where they should be if the angle was slightly increased
-                angle -= Time.deltaTime * swingSpeed;
+                //angle -= Time.deltaTime * swingSpeed;
                 Vector2 desiredPos = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
 
                 RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
@@ -91,9 +97,10 @@ public class Movement : MonoBehaviour
                 Vector2 pivot = red.transform.position;
                 Vector2 currentPos = blue.transform.position;
                 float angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized);
+                //angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized) + 180f;
 
                 //Place the swinging player where they should be if the angle was slightly increased
-                angle -= Time.deltaTime * swingSpeed;
+                //angle -= Time.deltaTime * swingSpeed;
                 Vector2 desiredPos = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
 
                 RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
@@ -116,12 +123,14 @@ public class Movement : MonoBehaviour
         else BlueSwingCasted();
     }
 
+    float angle;
+
     void RedSwingCasted()
     {
         //Get current angle between players
         Vector2 pivot = blue.transform.position;
         Vector2 currentPos = red.transform.position;
-        float angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized);
+        //float angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized);
 
         //Place the swinging player where they should be if the angle was slightly increased
         angle -= Time.deltaTime * swingSpeed;
@@ -130,9 +139,10 @@ public class Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
         if(hit)
         {
+            Vector2 hitPointSpaced = hit.point + (hit.normal * wallSpacing);
             //Do final interpolation
-            if(Vector2.Distance(hit.point, red.transform.position) > maxMove * Time.deltaTime) red.transform.position = (Vector2)red.transform.position + (hit.point - (Vector2)red.transform.position).normalized * maxMove * Time.deltaTime;
-            else red.transform.position = hit.point;
+            if(Vector2.Distance(hitPointSpaced, red.transform.position) > maxMove * Time.deltaTime) red.transform.position = (Vector2)red.transform.position + (hitPointSpaced - (Vector2)red.transform.position).normalized * maxMove * Time.deltaTime;
+            else red.transform.position = hitPointSpaced;
         }
         else
         {
@@ -147,7 +157,7 @@ public class Movement : MonoBehaviour
         //Get current angle between players
         Vector2 pivot = red.transform.position;
         Vector2 currentPos = blue.transform.position;
-        float angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized);
+        //float angle = Vector2.SignedAngle(Vector2.right, (currentPos - pivot).normalized);
 
         //Place the swinging player where they should be if the angle was slightly increased
         angle += Time.deltaTime * swingSpeed;
@@ -156,9 +166,10 @@ public class Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
         if(hit)
         {
+            Vector2 hitPointSpaced = hit.point + (hit.normal * wallSpacing);
             //Do final interpolation
-            if(Vector2.Distance(hit.point, blue.transform.position) > maxMove * Time.deltaTime) blue.transform.position = (Vector2)blue.transform.position + (hit.point - (Vector2)blue.transform.position).normalized * maxMove * Time.deltaTime;
-            else blue.transform.position = hit.point;
+            if(Vector2.Distance(hitPointSpaced, blue.transform.position) > maxMove * Time.deltaTime) blue.transform.position = (Vector2)blue.transform.position + (hitPointSpaced - (Vector2)blue.transform.position).normalized * maxMove * Time.deltaTime;
+            else blue.transform.position = hitPointSpaced;
         }
         else
         {
