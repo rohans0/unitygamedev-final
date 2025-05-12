@@ -17,13 +17,14 @@ public class PlayerManager : MonoBehaviour
     public void TakeHit()
     {
         health--;
-        GameUI.Instance.SetHealth(health);
+        GameUI.Instance.SetHealth(health, false);
+        CRTV.Instance.damageInd();
     }
 
     public void HealPlayer(){
         health++;
         if(health > maxHealth) health = maxHealth;
-        GameUI.Instance.SetHealth(health);
+        GameUI.Instance.SetHealth(health, true);
     }
 
     public bool CanHeal()
