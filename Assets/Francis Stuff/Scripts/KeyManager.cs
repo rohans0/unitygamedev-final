@@ -6,20 +6,13 @@ public class KeyManager : MonoBehaviour
 {
     public int keys;
     public static KeyManager Instance;
-    public Image[] keyImages;
+    public GameObject keyList;
 
-    private void UpdateKeySprites()
+    private void UpdateKeySprites() // FIX: instead update only when key is collected
     {
-        for (int i = 0; i < keyImages.Length; i++)
+        for (int i = 0; i < keyList.transform.childCount; i++)
         {
-            if (i < keys)
-            {
-                keyImages[i].enabled = true;
-            }
-            else
-            {
-                keyImages[i].enabled = false;
-            }
+            keyList.transform.GetChild(i).gameObject.SetActive(i < keys);
         }
     }
 

@@ -1757,15 +1757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keys: 0
-  keyImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  keyList: {fileID: 5377962842114365765}
 --- !u!114 &8768755716169071386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2349,7 +2341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 4418442984309599092}
   deathMenuUI: {fileID: 1272746082123049310}
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 3390592250771766703}
   coinCountText: {fileID: 3580324698659074840}
 --- !u!1 &4485465664042972375
 GameObject:

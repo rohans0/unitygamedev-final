@@ -45,9 +45,9 @@ public class PressurePlate : MonoBehaviour
     private void OnTriggerExit2D(Collider2D other)
     {
         // If crate leaves pressure plate remove offset from door
-        if (other.CompareTag("Crate")) 
+        if (other.CompareTag("Crate"))
         {
-            audioSource.PlayOneShot(PlateUpSound, 1);
+            audioSource?.PlayOneShot(PlateUpSound, 1);
             doorCurSpeed = doorCloseSpeed;
             doorCurTargetPos = doorInitPos;
         }
