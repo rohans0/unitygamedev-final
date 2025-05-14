@@ -80,6 +80,6 @@ public class PlayerMenu : MonoBehaviour
             Restart();
         }
 
-        coinCountText.text = ": " + PlayerManager.Instance.score.ToString();
+        coinCountText.text = PlayerManager.Instance.score.ToString();
     }
 }

@@ -100,7 +100,6 @@ public class GuardBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-		print("hello");
         if (collision.transform.CompareTag("Red Player") || collision.transform.CompareTag("Blue Player"))
         {
             PlayerManager.Instance.TakeHit();
@@ -131,5 +130,6 @@ public class GuardBehavior : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).GetComponent<DeathVisual>().PlayVisual();
         }
+        
     }
 }
