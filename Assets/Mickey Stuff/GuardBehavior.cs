@@ -85,6 +85,7 @@ public class GuardBehavior : MonoBehaviour
     {
         if (collision.transform.CompareTag("Red Player") || collision.transform.CompareTag("Blue Player"))
         {
+            //Debug.Log("HIT");
             PlayerManager.Instance.TakeHit();
             StartCoroutine(HitCoroutine());
         }
@@ -113,5 +114,6 @@ public class GuardBehavior : MonoBehaviour
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).GetComponent<DeathVisual>().PlayVisual();
         }
+        
     }
 }
