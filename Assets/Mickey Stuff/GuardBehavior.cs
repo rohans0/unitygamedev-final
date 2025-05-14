@@ -22,6 +22,13 @@ public class GuardBehavior : MonoBehaviour
     public AudioClip GuardDeathSound;
     public AudioSource audioSource;
 
+    [SerializeField] GuardType guardType = GuardType.Default;
+    private enum GuardType
+	{
+		Default,
+		Sniper
+	}
+
     public GuardState currentState = GuardState.Idle;
     public enum GuardState
     {
@@ -68,6 +75,16 @@ public class GuardBehavior : MonoBehaviour
 
     void ChaseUpdate()
     {
+		switch (guardType)
+		{
+			case GuardType.Sniper:
+				this.GetComponent<ShooterGuard>();
+				break;
+			default:
+				break;
+		}
+
+
         agent.SetDestination(CurrentPlayerPos());
         transform.GetChild(0).gameObject.SetActive(false);
         lineRenderer.enabled = true;
@@ -83,6 +100,7 @@ public class GuardBehavior : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+		print("hello");
         if (collision.transform.CompareTag("Red Player") || collision.transform.CompareTag("Blue Player"))
         {
             PlayerManager.Instance.TakeHit();

@@ -22,6 +22,8 @@ public class Health : MonoBehaviour
             PlayerManager.Instance.HealPlayer();
             audioSource.PlayOneShot(HealthCollectSound, 1);
 
+			print("hello");
+
             // Destroy the coin
             Destroy(gameObject);
         }
