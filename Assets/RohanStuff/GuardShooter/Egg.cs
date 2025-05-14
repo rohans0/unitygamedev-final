@@ -2,6 +2,9 @@ using UnityEngine;
 
 public class Egg : MonoBehaviour
 {
+	private float timeTilDisabled = 10000;
+	const float timeToDestroyAfterDisabled = .04f;
+
     void Update()
     {
         Vector3 newPos = new Vector3(
@@ -17,20 +20,25 @@ public class Egg : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
         transform.position = Camera.main.ScreenToWorldPoint(newPos);
+
+		if (timeTilDisabled < -timeToDestroyAfterDisabled) Destroy(gameObject);
+		GetComponent<BoxCollider2D>().enabled = timeTilDisabled > 0;
+		timeTilDisabled -= Time.deltaTime;
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D c)
     {
-        // plane script = other.GetComponent<plane>();
-        // 
-        // if (script != null)
-        // {
-        //     script.BulletHit();
-        //     arrowPrefab.GetComponent<arrow>().numEggOnScreen--;
-        //     arrowPrefab.GetComponent<arrow>().updateText();
-        //     Destroy(gameObject);
-        // }
+		if (timeTilDisabled > 1 && (c.gameObject.tag == "Red Player" || c.gameObject.tag == "Blue Player"))
+		{
+            c.gameObject.GetComponentInParent<PlayerManager>().score--;
+			timeTilDisabled = .2f;
+   //          c.gameObject.GetComponentInParent<PlayerManager>().TakeHit();
+			// timeTilDisabled = .0f;
+		}
+		else if (c.gameObject.tag != "Guard") {
+			timeTilDisabled = .2f;
+		}
     }
 }

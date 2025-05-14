@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Demo/LevelOneEdit.unity
     guid: 31deb03669d8abb428ca3ebaec54fbf6
+  - enabled: 1
+    path: Assets/Demo/LvBoss.unity
+    guid: 638909faa856b8206a4d4e31287fa41a
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

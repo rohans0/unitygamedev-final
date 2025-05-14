@@ -26,7 +26,7 @@ public class GuardBehavior : MonoBehaviour
     private enum GuardType
 	{
 		Default,
-		Sniper
+		Shooter
 	}
 
     public GuardState currentState = GuardState.Idle;
@@ -39,8 +39,9 @@ public class GuardBehavior : MonoBehaviour
 
     public void PlayerDetected()
     {
+		// disable view triangle
+        transform.GetChild(0).gameObject.SetActive(false);
         currentState = GuardState.Chase;
-        
     }
 
     private void Start()
@@ -52,6 +53,18 @@ public class GuardBehavior : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.positionCount = 2;
         audioSource = GameObject.Find("GuardDeathAudio").GetComponent<AudioSource>();
+
+		switch (guardType)
+		{
+			case GuardType.Shooter:
+				if (GetComponent<ShooterGuard>() == null) Debug.LogError("add ShooterGuard.cs to the shooter guard gameObject stupidhead!!!");
+				break;
+			default:
+		        lineRenderer.enabled = true;
+				lineRenderer.SetPosition(0, transform.position);
+				lineRenderer.SetPosition(1, GetPlayerPos());
+				break;
+		}
     }
 
     void Update()
@@ -75,27 +88,30 @@ public class GuardBehavior : MonoBehaviour
 
     void ChaseUpdate()
     {
+		Vector3 playerPos = GetPlayerPos();
+        agent.SetDestination(GetPlayerPos());
+
+
 		switch (guardType)
 		{
-			case GuardType.Sniper:
-				this.GetComponent<ShooterGuard>();
+			case GuardType.Shooter:
+				GetComponent<ShooterGuard>().playerPos = playerPos;
 				break;
 			default:
+		        lineRenderer.enabled = true;
+				lineRenderer.SetPosition(0, transform.position);
+				lineRenderer.SetPosition(1, GetPlayerPos());
 				break;
 		}
-
-
-        agent.SetDestination(CurrentPlayerPos());
-        transform.GetChild(0).gameObject.SetActive(false);
-        lineRenderer.enabled = true;
-        lineRenderer.SetPosition(0, transform.position);
-        lineRenderer.SetPosition(1, CurrentPlayerPos());
     }
 
-    Vector3 CurrentPlayerPos()
+    private Vector3 GetPlayerPos()
     {
-        if(player.GetComponent<Movement>().redSwinging) return player.transform.GetChild(1).position;
-        else return player.transform.GetChild(0).position;
+		return (
+			player.GetComponent<Movement>().redSwinging ?
+			player.transform.GetChild(1).position :
+			player.transform.GetChild(0).position
+		);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -110,7 +126,7 @@ public class GuardBehavior : MonoBehaviour
     IEnumerator HitCoroutine()
     {
         currentState = GuardState.Stunned;
-        GetComponent<Rigidbody2D>().AddForce((transform.position - CurrentPlayerPos()).normalized * stunForce);
+        GetComponent<Rigidbody2D>().AddForce((transform.position - GetPlayerPos()).normalized * stunForce);
 
         yield return new WaitForSeconds(stunTime);
 

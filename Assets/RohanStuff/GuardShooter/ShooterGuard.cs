@@ -1,9 +1,12 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ShooterGuard : MonoBehaviour
 {
-    [SerializeField] private GameObject eggPrefab;
-    [SerializeField] private GameObject playerObject;
+    [SerializeField] private Sprite bulletSprite;
+    [SerializeField] private LayerMask bulletLayer;
+    // [SerializeField] private Sprite eggPrefab; easter egg randomly can be deadly egg bullet?
+	public Vector3 playerPos = Vector3.zero;
     private float eggReloadTimer = 0;
 	private GuardBehavior behavior = null;
 
@@ -20,17 +23,24 @@ public class ShooterGuard : MonoBehaviour
 			if (eggReloadTimer > 0.2f)
 			{
 				eggReloadTimer = 0;
-				Instantiate(eggPrefab,
-						transform.position,
-						// Quaternion.AxisAngle(Mathf.Atan2(transform.position.x, transform.position.y))
-						new Quaternion(0,0,Random.Range(0.0f,1.0f),Random.Range(0.0f,1.0f))
-						// 0
-						// transform.position.angleTo playerObject.position
-
-					).AddComponent<Egg>();
+				GameObject egg = new GameObject();
+				egg.layer = (int)Mathf.Log(bulletLayer,2);
+				egg.transform.position = transform.position;
+				egg.transform.rotation = Quaternion.Euler(0,0,
+						Mathf.Atan2(
+							transform.position.y - playerPos.y,
+							transform.position.x - playerPos.x
+							)*Mathf.Rad2Deg + 90 + Random.Range(-30,30)
+						);
+				egg.transform.localScale *= .9f;
+				egg.AddComponent<Egg>();
+				egg.AddComponent<SpriteRenderer>().sprite = bulletSprite;
+				// egg.AddComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+				// egg.GetComponent<Rigidbody2D>().gravityScale = 0;
+				egg.AddComponent<BoxCollider2D>().size *= .4f;
+				// egg.AddComponent<NavMeshObstacle>();
 			}
 		}
-
 		else
 		{
 			eggReloadTimer = 0;

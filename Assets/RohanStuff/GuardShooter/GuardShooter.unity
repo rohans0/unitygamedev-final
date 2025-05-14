@@ -2587,6 +2587,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 0, y: 4, z: 0}
   openingSpeed: 3
+  DoorOpenSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!212 &456827854
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2946,8 +2948,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Locked doors require a key to open. Touch the key to pick it up.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -5174,7 +5176,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.2650208, y: 13.290363, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5238,8 +5240,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Some doors are connected to a pressure plate. Put something heavy on it.
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6850,6 +6852,8 @@ MonoBehaviour:
   playerObject: {fileID: 1920355107094742426}
   maxMoveStationary: 5
   maxMoveRoom: 10
+  CameraMoveSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!1 &1344127821
 GameObject:
   m_ObjectHideFlags: 0
@@ -6909,8 +6913,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 3
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
-  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7018,6 +7022,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   onCollectEffect: {fileID: 0}
+  KeyCollectSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!61 &1463990860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -9894,6 +9900,9 @@ MonoBehaviour:
   viewHeight: 8
   stunTime: 1
   stunForce: 100
+  GuardDeathSound: {fileID: 0}
+  audioSource: {fileID: 0}
+  guardType: 0
   currentState: 1
 --- !u!120 &1934951812
 LineRenderer:
@@ -10064,6 +10073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eggPrefab: {fileID: 1091819576}
+  playerObject: {fileID: 1920355107094742426}
 --- !u!1 &2066221779
 GameObject:
   m_ObjectHideFlags: 0
@@ -10186,6 +10196,9 @@ MonoBehaviour:
   doorOpenSpeed: 3
   doorCloseSpeed: 0.5
   doorCloseOffset: {x: 0, y: 4, z: 0}
+  PlateUpSound: {fileID: 0}
+  PlateDownSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!212 &2090373031
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10552,7 +10565,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7648915617876837738}
   - component: {fileID: 8317847457156256839}
-  - component: {fileID: 5821670045653390013}
   - component: {fileID: 8317847457156256840}
   m_Layer: 8
   m_Name: Player Object
@@ -10709,20 +10721,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &5821670045653390013
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1920355107094742426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a595d47a1fb38e24aa78bd63d32fd45c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keys: 0
-  keyImages: []
 --- !u!1 &6022589797272721001
 GameObject:
   m_ObjectHideFlags: 0
@@ -11036,6 +11034,8 @@ MonoBehaviour:
   redStill: {fileID: -1206222500, guid: b5b7ef950aeafb44ab71d7b505bb9b84, type: 3}
   blueSwing: {fileID: -1410923344, guid: b5b7ef950aeafb44ab71d7b505bb9b84, type: 3}
   blueStill: {fileID: -1999473610, guid: b5b7ef950aeafb44ab71d7b505bb9b84, type: 3}
+  PlayerSwitchSound: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!114 &8317847457156256840
 MonoBehaviour:
   m_ObjectHideFlags: 0
