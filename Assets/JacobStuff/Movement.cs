@@ -139,7 +139,7 @@ public class Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
         if(hit)
         {
-            Vector2 hitPointSpaced = hit.point + (hit.normal * wallSpacing);
+            Vector2 hitPointSpaced = hit.point;// + (hit.normal * wallSpacing);
             //Do final interpolation
             if(Vector2.Distance(hitPointSpaced, red.transform.position) > maxMove * Time.deltaTime) red.transform.position = (Vector2)red.transform.position + (hitPointSpaced - (Vector2)red.transform.position).normalized * maxMove * Time.deltaTime;
             else red.transform.position = hitPointSpaced;
@@ -166,7 +166,7 @@ public class Movement : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
         if(hit)
         {
-            Vector2 hitPointSpaced = hit.point + (hit.normal * wallSpacing);
+            Vector2 hitPointSpaced = hit.point;// + (hit.normal * wallSpacing);
             //Do final interpolation
             if(Vector2.Distance(hitPointSpaced, blue.transform.position) > maxMove * Time.deltaTime) blue.transform.position = (Vector2)blue.transform.position + (hitPointSpaced - (Vector2)blue.transform.position).normalized * maxMove * Time.deltaTime;
             else blue.transform.position = hitPointSpaced;
