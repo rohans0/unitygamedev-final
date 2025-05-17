@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     public int health;
 
     public int score = 0;
+    [SerializeField] AudioSource hurtSound;
 
     void Awake()
     {
@@ -16,6 +17,7 @@ public class PlayerManager : MonoBehaviour
 
     public void TakeHit()
     {
+        hurtSound.Play();
         health--;
         GameUI.Instance.SetHealth(health, false);
         CRTV.Instance.damageInd();

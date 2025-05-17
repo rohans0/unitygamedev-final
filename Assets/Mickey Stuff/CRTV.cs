@@ -3,87 +3,68 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-
 public class CRTV : MonoBehaviour
 {
-
     public static CRTV Instance;
     public Volume m_Volume;
-    Color blueish = new Color(0.2784f,1,1,1);
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    [Header("Vignette Effect Settings")]
+    [SerializeField] private float fadeSpeedMultiplier = 1f;  // How fast it fades
+    [SerializeField] private float fadeDelay = 1f;            // Delay before fade begins
+
+    private Color blueish = new Color(0.2784f, 1, 1, 1);
+
     void Awake()
     {
         Instance = this;
         m_Volume = GetComponent<Volume>();
     }
 
-    public void damageInd(){
+    public void damageInd()
+    {
         StartCoroutine(RedFlash());
     }
 
-    public void healInd(){
+    public void healInd()
+    {
         StartCoroutine(GreenFlash());
     }
 
-    IEnumerator GreenFlash(){ // THIS IS A BLUE COLOR CHANGE IGNORE THE NAME IM TOO LAZY TO CHANGE IT :3
-
-        //Debug.Log("Hit Taken");
+    IEnumerator GreenFlash()
+    {
         VolumeProfile profile = m_Volume.sharedProfile;
-        float elapsedTime;
-        
+
         if (profile.TryGet<Vignette>(out Vignette vignette))
         {
-            //vignette = profile.Add<Vignette>(false);
-            vignette.color.value = new Color(0.2784f,1,1,1); // Green color BLUE COLOR RIGHT NOW
-            //Debug.Log("Green shift");
-            yield return new WaitForSecondsRealtime(1);
+            vignette.color.value = blueish;
+            yield return new WaitForSecondsRealtime(fadeDelay);
 
-            elapsedTime = 0f;
-            while (elapsedTime < 0.5f){
+            float elapsedTime = 0f;
+            while (elapsedTime < 0.5f)
+            {
                 vignette.color.value = Color.Lerp(blueish, Color.black, elapsedTime / 0.5f);
-                elapsedTime += Time.unscaledDeltaTime;
+                elapsedTime += Time.unscaledDeltaTime * fadeSpeedMultiplier;
                 yield return null;
             }
-            //vignette.color.value = new Color(0, 0, 0, 1); // Reset to black
-                
         }
-
     }
 
-    IEnumerator RedFlash(){
-
-        //Debug.Log("Hit Taken");
+    IEnumerator RedFlash()
+    {
         VolumeProfile profile = m_Volume.sharedProfile;
-        float elapsedTime;
-        
+
         if (profile.TryGet<Vignette>(out Vignette vignette))
         {
-            //vignette = profile.Add<Vignette>(false);
-            vignette.color.value = new Color(1, 0, 0, 1); // Red color
-            //Debug.Log("Red shift");
-            yield return new WaitForSecondsRealtime(1);
+            vignette.color.value = Color.red;
+            yield return new WaitForSecondsRealtime(fadeDelay);
 
-            elapsedTime = 0f;
-            while (elapsedTime < 0.5f){
+            float elapsedTime = 0f;
+            while (elapsedTime < 0.5f)
+            {
                 vignette.color.value = Color.Lerp(Color.red, Color.black, elapsedTime / 0.5f);
-                elapsedTime += Time.unscaledDeltaTime;
+                elapsedTime += Time.unscaledDeltaTime * fadeSpeedMultiplier;
                 yield return null;
             }
-
-            //vignette.color.value = new Color(0, 0, 0, 1); // Reset to black
-
-            
         }
-
     }
-
-    // VolumeProfile profile = m_Volume.sharedProfile;
-    // if (!profile.TryGet<Fog>(out var fog))
-    // {
-    //     fog = profile.Add<Fog>(false);
-    // }
-
-    // fog.enabled.overrideState = overrideFog;
-    // fog.enabled.value = enableFog;
-
 }
