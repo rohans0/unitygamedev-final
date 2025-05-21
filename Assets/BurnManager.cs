@@ -36,6 +36,7 @@ public class BurnManager : MonoBehaviour
         }
         else
         {
+            burnProgress = 0f;
             burnAudio.Stop();
             burnEffectBlue.SetActive(false);
             burnEffectRed.SetActive(false);

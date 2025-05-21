@@ -5,7 +5,6 @@ public class Lava : MonoBehaviour
 {
     [SerializeField] float radius;
     [SerializeField] float burnProgress;
-    [SerializeField] float burnTime = 2f;
     [SerializeField] LayerMask burnLayer;
 
     [SerializeField] AnimationCurve alphaCurve;
