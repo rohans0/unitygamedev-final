@@ -1028,7 +1028,7 @@ MonoBehaviour:
   - {fileID: 4797940102898930830, guid: aa5151f728ee539479ace34dd30fb723, type: 3}
   startRoomPrefab: {fileID: 4797940102898930830, guid: 7ea59ee46402c8043953c0e447311193, type: 3}
   endRoomPrefab: {fileID: 7532330564083512374, guid: d9751f29d5fa70848920c06549314294, type: 3}
-  rooms: 8
+  rooms: 5
   generate: 0
   surface: {fileID: 63632715}
 --- !u!4 &1498417403
