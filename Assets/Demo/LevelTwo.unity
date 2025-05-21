@@ -3024,7 +3024,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa24a1c0d29e58b4e9037270062e23a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Volume: {fileID: 0}
+  m_Volume: {fileID: 399486099}
+  fadeSpeedMultiplier: 1
+  fadeDelay: 1
 --- !u!4 &430999266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4861627779561326041, guid: 0a4d4b657e59be44b96dfd7b233e93ba, type: 3}
@@ -12152,6 +12154,7 @@ MonoBehaviour:
   playerObject: {fileID: 303739238}
   maxMoveStationary: 5
   maxMoveRoom: 10
+  maxMoveGrid: 0
   CameraMoveSound: {fileID: 8300000, guid: f5cc88e1381f8ec41a90a8fac628cbc6, type: 3}
   audioSource: {fileID: 1469067108}
 --- !u!114 &1314000233 stripped
@@ -17027,6 +17030,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthText: {fileID: 1314000233}
+  effectSpeedMultiplier: 1
 --- !u!1001 &2023712985
 PrefabInstance:
   m_ObjectHideFlags: 0

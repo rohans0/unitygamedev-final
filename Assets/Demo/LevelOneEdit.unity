@@ -4388,7 +4388,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa24a1c0d29e58b4e9037270062e23a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Volume: {fileID: 0}
+  m_Volume: {fileID: 399486099}
+  fadeSpeedMultiplier: 1
+  fadeDelay: 1
 --- !u!4 &427506866 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5010846958883557111, guid: 04ae56943e541c247afdfa3be2e09b83, type: 3}
@@ -10018,6 +10020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthText: {fileID: 474046966}
+  effectSpeedMultiplier: 1
 --- !u!1001 &1025822341
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12040,6 +12043,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1285157514}
+    - target: {fileID: 8768755716169071386, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: maxHealth
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12959,6 +12966,7 @@ MonoBehaviour:
   playerObject: {fileID: 303739238}
   maxMoveStationary: 5
   maxMoveRoom: 10
+  maxMoveGrid: 0
   CameraMoveSound: {fileID: 8300000, guid: f5cc88e1381f8ec41a90a8fac628cbc6, type: 3}
   audioSource: {fileID: 1469067108}
 --- !u!4 &1297595936 stripped
@@ -13827,7 +13835,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1

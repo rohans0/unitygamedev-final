@@ -47,7 +47,7 @@ public class PressurePlate : MonoBehaviour
         // If crate leaves pressure plate remove offset from door
         if (other.CompareTag("Crate"))
         {
-            audioSource?.PlayOneShot(PlateUpSound, 1);
+            audioSource.PlayOneShot(PlateUpSound, 1);
             doorCurSpeed = doorCloseSpeed;
             doorCurTargetPos = doorInitPos;
         }

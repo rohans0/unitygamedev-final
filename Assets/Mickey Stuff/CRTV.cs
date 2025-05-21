@@ -16,8 +16,14 @@ public class CRTV : MonoBehaviour
 
     void Awake()
     {
+        VolumeProfile profile = m_Volume.sharedProfile;
+        if (profile.TryGet<Vignette>(out Vignette vignette)){vignette.color.value = new Color(0,0,0,1); // set the vignette color to black at startup
+        }
+
+
         Instance = this;
         m_Volume = GetComponent<Volume>();
+        
     }
 
     public void damageInd()

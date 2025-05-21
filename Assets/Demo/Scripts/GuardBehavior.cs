@@ -50,8 +50,8 @@ public class GuardBehavior : MonoBehaviour
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         player = KeyManager.Instance.gameObject;
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.positionCount = 2;
+        //lineRenderer = GetComponent<LineRenderer>();
+        //lineRenderer.positionCount = 2;
         audioSource = GameObject.Find("GuardDeathAudio").GetComponent<AudioSource>();
 
 		switch (guardType)
@@ -60,9 +60,9 @@ public class GuardBehavior : MonoBehaviour
 				if (GetComponent<ShooterGuard>() == null) Debug.LogError("add ShooterGuard.cs to the shooter guard gameObject stupidhead!!!");
 				break;
 			default:
-		        lineRenderer.enabled = true;
-				lineRenderer.SetPosition(0, transform.position);
-				lineRenderer.SetPosition(1, GetPlayerPos());
+		        //lineRenderer.enabled = true;
+				//lineRenderer.SetPosition(0, transform.position);
+				//lineRenderer.SetPosition(1, GetPlayerPos());
 				break;
 		}
     }
@@ -83,7 +83,7 @@ public class GuardBehavior : MonoBehaviour
     void IdleUpdate()
     {
         transform.GetChild(0).gameObject.SetActive(true);
-        lineRenderer.enabled = false;
+        //lineRenderer.enabled = false;
     }
 
     void ChaseUpdate()
@@ -91,18 +91,28 @@ public class GuardBehavior : MonoBehaviour
 		Vector3 playerPos = GetPlayerPos();
         agent.SetDestination(GetPlayerPos());
 
+        // this rotates the guard towards the player
+        Vector3 direction = playerPos - transform.position;
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        float currentAngle = transform.eulerAngles.z;
+        float angle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, 200 * Time.deltaTime); // 360 is rotation speed, adjust as needed
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+        // end rotation
+
+        gameObject.transform.GetChild(0).gameObject.SetActive(false); // disables the vision cone
+
 
 		switch (guardType)
-		{
-			case GuardType.Shooter:
-				GetComponent<ShooterGuard>().playerPos = playerPos;
-				break;
-			default:
-		        lineRenderer.enabled = true;
-				lineRenderer.SetPosition(0, transform.position);
-				lineRenderer.SetPosition(1, GetPlayerPos());
-				break;
-		}
+        {
+            case GuardType.Shooter:
+                GetComponent<ShooterGuard>().playerPos = playerPos;
+                break;
+            default:
+                //lineRenderer.enabled = true;
+                ///lineRenderer.SetPosition(0, transform.position);
+                //lineRenderer.SetPosition(1, GetPlayerPos());
+                break;
+        }
     }
 
     private Vector3 GetPlayerPos()
@@ -120,6 +130,9 @@ public class GuardBehavior : MonoBehaviour
         {
             PlayerManager.Instance.TakeHit();
             StartCoroutine(HitCoroutine());
+        }else if(collision.transform.CompareTag("Crate") || collision.transform.CompareTag("TableProp"))
+        {
+            currentState = GuardState.Chase;
         }
     }
 
@@ -142,7 +155,7 @@ public class GuardBehavior : MonoBehaviour
             currentState = GuardState.Stunned;
             //play audio here!!
             audioSource.PlayOneShot(GuardDeathSound, 1);
-			lineRenderer.enabled = false;
+			//lineRenderer.enabled = false;
             transform.GetChild(0).gameObject.SetActive(false);
             transform.GetChild(1).GetComponent<DeathVisual>().PlayVisual();
         }

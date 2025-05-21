@@ -95,7 +95,7 @@ public class LavaGuard : MonoBehaviour
 
     void ChaseUpdate()
     {
-		Vector3 playerPos = GetPlayerPos();
+        Vector3 playerPos = GetPlayerPos();
         if (Vector2.Distance(transform.position, (Vector2)playerPos) <= stopDistance && HasLineOfSight())
         {
             //start throwing
@@ -103,6 +103,17 @@ public class LavaGuard : MonoBehaviour
             return;
         }
         agent.SetDestination(GetPlayerPos());
+        
+        // this rotates the guard towards the player
+        Vector3 direction = playerPos - transform.position;
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90;
+        float currentAngle = transform.eulerAngles.z;
+        float angle = Mathf.MoveTowardsAngle(currentAngle, targetAngle, 200 * Time.deltaTime); // 360 is rotation speed, adjust as needed
+        transform.rotation = Quaternion.Euler(0, 0, angle);
+        // end rotation
+
+        gameObject.transform.GetChild(0).gameObject.SetActive(false); // disables the vision cone
+
     }
 
     private Vector3 GetPlayerPos()

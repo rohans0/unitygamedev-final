@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6389387622023166972}
   m_Layer: 11
   m_Name: TableProp
-  m_TagString: Untagged
+  m_TagString: TableProp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
