@@ -150,7 +150,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 10
-  m_LinearDamping: 20
+  m_LinearDamping: 28
   m_AngularDamping: 5
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5b389f419ac7e2689f7b08b98aea4ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitForce: 25
+  hitForce: 35
 --- !u!208 &7482423798746123877
 NavMeshObstacle:
   m_ObjectHideFlags: 0

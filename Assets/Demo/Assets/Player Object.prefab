@@ -1689,6 +1689,7 @@ GameObject:
   - component: {fileID: 8768755716169071386}
   - component: {fileID: 1262875633409780160}
   - component: {fileID: 1718408913640885682}
+  - component: {fileID: 4892807293469705080}
   m_Layer: 8
   m_Name: Player Object
   m_TagString: Player
@@ -1772,7 +1773,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353e4f96b84376a4e92ee5a6923f3193, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
+  maxHealth: 5
   health: 0
   score: 0
   hurtSound: {fileID: 1262875633409780160}
@@ -1970,6 +1971,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4892807293469705080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3390592250771766703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 381dde949b7529e46af3871f22edffdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  burning: 0
+  burnTime: 2.25
 --- !u!1 &3432953885999810605
 GameObject:
   m_ObjectHideFlags: 0

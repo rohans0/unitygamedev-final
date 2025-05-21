@@ -10,6 +10,7 @@ public class CamFollow : MonoBehaviour
     //Smoothing value, lower value is smoother but slower (smoothing only applied in stationary mode)
     [SerializeField] float maxMoveStationary;
     [SerializeField] float maxMoveRoom;
+    [SerializeField] float maxMoveGrid;
 
     List<CamRoom> rooms = new List<CamRoom>();
     int currentRoom = -1;
@@ -21,15 +22,27 @@ public class CamFollow : MonoBehaviour
         Midpoint,
         Stationary,
         Room,
+        Grid,
         //This mode does nothing
         None,
     }
 
     void Update()
     {
-        if(camMode == CameraMode.Stationary) UpdateStationary();
-        else if(camMode == CameraMode.Midpoint) UpdateMidpoint();
+        if (camMode == CameraMode.Stationary) UpdateStationary();
+        else if (camMode == CameraMode.Midpoint) UpdateMidpoint();
         else if (camMode == CameraMode.Room) UpdateRoom();
+        else if (camMode == CameraMode.Grid) UpdateGrid();
+    }
+
+    void UpdateGrid()
+    {
+        Vector2 playerPos = playerObject.GetComponent<Movement>().redSwinging ? playerObject.transform.GetChild(1).position : playerObject.transform.GetChild(0).position;
+        float x = Mathf.Round(playerPos.x / 12f) * 12f;
+        float y = Mathf.Round(playerPos.y / 12f) * 12f;
+        Vector2 pos = new Vector2(x, y);
+        if(Vector2.Distance(transform.position, pos) > maxMoveGrid * Time.deltaTime) pos = (Vector2)transform.position + ((pos - (Vector2)transform.position).normalized * maxMoveGrid * Time.deltaTime);
+        transform.position = (Vector3)pos + (Vector3.forward * transform.position.z);
     }
 
     void UpdateRoom()

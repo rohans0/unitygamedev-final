@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NavMeshPlus.Components;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -9,9 +10,19 @@ public class MapGenerator : MonoBehaviour
     [SerializeField] GameObject endRoomPrefab;
     [SerializeField] int rooms = 5;
     [SerializeField] bool generate;
+    [SerializeField] NavMeshSurface surface;
 
     //if an int2 is in the set, there is a room segment at those coordinates
     HashSet<int2> map = new HashSet<int2>();
+
+    void Start()
+    {
+        bool generated = false;
+        while (!generated)
+        {
+            generated = Generate();
+        }
+    }
 
     void Update()
     {
@@ -32,13 +43,22 @@ public class MapGenerator : MonoBehaviour
         }
     }
 
-    void Generate()
+    bool Generate()
     {
         GameObject startRoom = Instantiate(startRoomPrefab);
         startRoom.transform.parent = transform;
         map.Add(int2.zero);
         bool success = GenerateMapR(int2.zero, startRoom.GetComponent<RoomData>().exitSide, 1);
-        if (!success) Debug.Log("GENERATION FAILURE, TRY AGAIN");
+        if (!success)
+        {
+            //Debug.Log("GENERATION FAILURE, TRY AGAIN");
+            return false;
+        }
+        else
+        {
+            surface.BuildNavMesh();
+            return true;
+        }
     }
 
     bool GenerateMapR(int2 exitPos, RoomData.DoorSide exitSideComp, int depth)

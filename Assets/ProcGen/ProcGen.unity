@@ -248,6 +248,86 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &63632713
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 63632716}
+  - component: {fileID: 63632715}
+  - component: {fileID: 63632714}
+  m_Layer: 0
+  m_Name: NavMesh
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &63632714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63632713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70bd44a44cd62c64fbfc1eea95b24880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideByGrid: 0
+  m_UseMeshPrefab: {fileID: 0}
+  m_CompressBounds: 0
+  m_OverrideVector: {x: 1, y: 1, z: 1}
+--- !u!114 &63632715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63632713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e04976799df50f54ba128eff723155a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_MinRegionArea: 0
+  m_HideEditorLogs: 0
+  m_NavMeshData: {fileID: 23800000, guid: 372bc3ec5b8491a4b9aa780b2a7410f7, type: 2}
+--- !u!4 &63632716
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63632713}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &229934653
 GameObject:
   m_ObjectHideFlags: 0
@@ -949,6 +1029,7 @@ MonoBehaviour:
   endRoomPrefab: {fileID: 7532330564083512374, guid: d9751f29d5fa70848920c06549314294, type: 3}
   rooms: 8
   generate: 0
+  surface: {fileID: 63632715}
 --- !u!4 &1498417403
 Transform:
   m_ObjectHideFlags: 0
@@ -996,10 +1077,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8905ed12928f40c4898ae0797fb27e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camMode: 1
+  camMode: 3
   playerObject: {fileID: 1373655779}
   maxMoveStationary: 5
   maxMoveRoom: 10
+  maxMoveGrid: 10
   CameraMoveSound: {fileID: 8300000, guid: f5cc88e1381f8ec41a90a8fac628cbc6, type: 3}
   audioSource: {fileID: 609891047}
 --- !u!114 &1630148847
@@ -1180,6 +1262,7 @@ MonoBehaviour:
   endRoomPrefab: {fileID: 8062969675096646196, guid: 73580c9162405554a912d6a446f61552, type: 3}
   rooms: 8
   generate: 0
+  surface: {fileID: 0}
 --- !u!1 &1982936281
 GameObject:
   m_ObjectHideFlags: 0
@@ -1253,3 +1336,4 @@ SceneRoots:
   - {fileID: 1891124473}
   - {fileID: 1498417403}
   - {fileID: 491975307}
+  - {fileID: 63632716}
