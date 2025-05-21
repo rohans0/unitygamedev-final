@@ -1487,6 +1487,7 @@ MonoBehaviour:
   playerObject: {fileID: 7094553251879476866}
   maxMoveStationary: 5
   maxMoveRoom: 10
+  maxMoveGrid: 0
   CameraMoveSound: {fileID: 8300000, guid: f5cc88e1381f8ec41a90a8fac628cbc6, type: 3}
   audioSource: {fileID: 1469067108}
 --- !u!1 &1469067106

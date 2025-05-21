@@ -30,6 +30,12 @@ public class Movement : MonoBehaviour
 
     public AudioClip PlayerSwitchSound;
     public AudioSource audioSource;
+    public static Movement Instance;
+
+    void Awake()
+    {
+        Instance = this;
+    }
 
     void LateUpdate()
     {

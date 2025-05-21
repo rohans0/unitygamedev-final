@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class BurnManager : MonoBehaviour
 {
@@ -6,24 +7,47 @@ public class BurnManager : MonoBehaviour
     public bool burning;
     float burnProgress;
     [SerializeField] float burnTime = 2.25f;
+    [SerializeField] GameObject burnEffectBlue;
+    [SerializeField] GameObject burnEffectRed;
+    [SerializeField] AudioSource burnAudio;
 
     void Awake()
     {
         Instance = this;
     }
 
-    void Update()
+    void FixedUpdate()
     {
+        if (burning)
+        {
+            if (!burnAudio.isPlaying) burnAudio.Play();
+
+            burnProgress += Time.deltaTime;
+            if (Movement.Instance.redSwinging)
+            {
+                if (!burnEffectBlue.activeInHierarchy) burnEffectBlue.SetActive(true);
+                if (burnEffectRed.activeInHierarchy) burnEffectRed.SetActive(false);
+            }
+            else
+            {
+                if (burnEffectBlue.activeInHierarchy) burnEffectBlue.SetActive(false);
+                if (!burnEffectRed.activeInHierarchy) burnEffectRed.SetActive(true);
+            }
+        }
+        else
+        {
+            burnAudio.Stop();
+            burnEffectBlue.SetActive(false);
+            burnEffectRed.SetActive(false);
+        }
+
         if (burnProgress > burnTime)
         {
             burnProgress = 0f;
-            GetComponent<AudioSource>().Play();
+            burnAudio.Play();
             PlayerManager.Instance.TakeHit();
         }
-    }
 
-    public void StartBurn()
-    {
-        
+        burning = false;
     }
 }
