@@ -1027,9 +1027,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefabs:
-  - {fileID: 9214547630628904354, guid: 1484e8da12bc6434cbb52c27d2eb5682, type: 3}
-  - {fileID: 8857974565020880221, guid: 5d128b3849bcc6d47b23e49d34d50780, type: 3}
-  - {fileID: 4797940102898930830, guid: aa5151f728ee539479ace34dd30fb723, type: 3}
+  - {fileID: 8857974565020880221, guid: fe396668fe83da461a2b9806c377bb41, type: 3}
+  - {fileID: 4797940102898930830, guid: 617958bf2a69c95d7ae2a214ab803e22, type: 3}
   startRoomPrefab: {fileID: 4797940102898930830, guid: 7ea59ee46402c8043953c0e447311193, type: 3}
   endRoomPrefab: {fileID: 7532330564083512374, guid: d9751f29d5fa70848920c06549314294, type: 3}
   rooms: 5

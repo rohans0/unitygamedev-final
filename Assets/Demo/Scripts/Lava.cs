@@ -22,18 +22,11 @@ public class Lava : MonoBehaviour
             Destroy(gameObject);
         }
         SetAlpha(alphaCurve.Evaluate(timer / lifetime));
-
-        if (burnProgress > burnTime)
-        {
-            burnProgress = 0f;
-            GetComponent<AudioSource>().Play();
-            PlayerManager.Instance.TakeHit();
-        }
     }
 
     void FixedUpdate()
     {
-        bool bluePlay = false, redPlay = false;
+        //bool bluePlay = false, redPlay = false;
 
         Collider2D[] others = Physics2D.OverlapCircleAll(transform.position, radius, burnLayer);
 
@@ -43,28 +36,30 @@ public class Lava : MonoBehaviour
             {
                 if (other.CompareTag("Red Player") && !PlayerManager.Instance.GetComponent<Movement>().redSwinging)
                 {
+                    BurnManager.Instance.burning = true;
+                    /*
                     burnProgress += Time.fixedDeltaTime;
                     other.transform.GetChild(1).gameObject.SetActive(true);
                     redPlay = true;
                     if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
+                    */
                 }
                 else if (other.CompareTag("Blue Player") && PlayerManager.Instance.GetComponent<Movement>().redSwinging)
                 {
+                    BurnManager.Instance.burning = true;
+                    /*
                     burnProgress += Time.fixedDeltaTime;
                     other.transform.GetChild(1).gameObject.SetActive(true);
                     bluePlay = true;
                     if (!GetComponent<AudioSource>().isPlaying) GetComponent<AudioSource>().Play();
+                    */
                 }
             }
         }
         else
         {
-            burnProgress = 0f;
+            //burnProgress = 0f;
         }
-
-        if (!redPlay) PlayerManager.Instance.transform.GetChild(0).GetChild(1).gameObject.SetActive(false);
-        if (!bluePlay) PlayerManager.Instance.transform.GetChild(1).GetChild(1).gameObject.SetActive(false);
-        if (!redPlay && !bluePlay) GetComponent<AudioSource>().Stop();
     }
 
     void SetAlpha(float newAlpha)
