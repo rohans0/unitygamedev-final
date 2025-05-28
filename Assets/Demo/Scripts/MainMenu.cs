@@ -62,4 +62,11 @@ public class MainMenu : MonoBehaviour
 		// settingsMenuPanel.SetActive(false);
 		playPanel.SetActive(true);
 	}
+
+	public void LoadMainMenu()
+	{
+		levelMenuPanel.SetActive(false);
+		playPanel.SetActive(false);
+		mainMenuPanel.SetActive(true);
+	}
 }
