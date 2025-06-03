@@ -13,7 +13,7 @@ public class BoxCollision : MonoBehaviour
     
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.transform.CompareTag("Player") || other.transform.CompareTag("Red Player") || other.transform.CompareTag("Blue Player"))
+        if (other.transform.CompareTag("BoxHitter") || other.transform.CompareTag("Red Player") || other.transform.CompareTag("Blue Player"))
         {
             cNormal = (transform.transform.position - other.transform.position).normalized;//c.contacts[0].normal;
             rb.AddForce(cNormal * hitForce, ForceMode2D.Impulse);

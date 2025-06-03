@@ -29,9 +29,5 @@ public class PlayerManager : MonoBehaviour
         GameUI.Instance.SetHealth(health, true);
     }
 
-    public bool CanHeal()
-    {
-        return health < maxHealth;
-    }
 
 }
