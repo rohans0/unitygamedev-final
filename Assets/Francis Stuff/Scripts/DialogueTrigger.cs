@@ -11,6 +11,9 @@ public class DialogueTrigger : MonoBehaviour
         {
             dialogueObject.SetActive(true);
 
+            dialogueObject.transform.GetChild(3).gameObject.SetActive(true);
+  
+
             Dialogue dialogue = dialogueObject.GetComponent<Dialogue>();
             dialogue.StartDialogue();
         }

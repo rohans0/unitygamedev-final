@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class DialogueDeletion : MonoBehaviour
@@ -6,10 +7,15 @@ public class DialogueDeletion : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // If player collides with dialogue object, destroy it
-        if (other.CompareTag("Player") || other.CompareTag("Red Player") 
+        if (other.CompareTag("Player") || other.CompareTag("Red Player")
         || other.CompareTag("Blue Player") || other.CompareTag("Connector"))
         {
-            dialogueObject.SetActive(false);
+            //Debug.Log("1");
+            Dialogue dialogue = dialogueObject.GetComponent<Dialogue>();
+            dialogue.DeleteHelper();
+
         }
     }
+
+    
 }
