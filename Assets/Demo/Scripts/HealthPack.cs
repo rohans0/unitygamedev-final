@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
             {
                 Instantiate(onCollectEffect, transform.position, transform.rotation);
             }
-            Debug.Log("healed once");
+            //Debug.Log("healed once");
             PlayerManager.Instance.HealPlayer();
             audioSource.PlayOneShot(HealthCollectSound, 1);
 

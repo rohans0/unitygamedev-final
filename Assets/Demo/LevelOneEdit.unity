@@ -11959,6 +11959,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1285157514}
+    - target: {fileID: 2334916335263749689, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2430083923529826257, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.062625885
@@ -12044,8 +12048,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1285157514}
     - target: {fileID: 8768755716169071386, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: health
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768755716169071386, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
       propertyPath: maxHealth
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

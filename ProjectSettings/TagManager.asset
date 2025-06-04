@@ -11,6 +11,7 @@ TagManager:
   - Red Player
   - Connector
   - TableProp
+  - BoxHitter
   layers:
   - Default
   - TransparentFX

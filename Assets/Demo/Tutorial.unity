@@ -20077,7 +20077,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 06c4e54f9e231654f92f329345ab2baa, type: 3}
   m_Resource: {fileID: 8300000, guid: 06c4e54f9e231654f92f329345ab2baa, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.048
+  m_Volume: 0.145
   m_Pitch: -0.42
   Loop: 1
   Mute: 0
@@ -20174,7 +20174,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: a68bf12fa04fe344a83e8d9d32849801, type: 3}
   m_Resource: {fileID: 8300000, guid: a68bf12fa04fe344a83e8d9d32849801, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.267
+  m_Volume: 0.665
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -20789,6 +20789,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1285157514}
+    - target: {fileID: 2334916335263749689, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: m_text
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2430083923529826257, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.062625885
@@ -20869,9 +20873,17 @@ PrefabInstance:
       propertyPath: 'keyImages.Array.data[7]'
       value: 
       objectReference: {fileID: 2075454067}
+    - target: {fileID: 4051324013130204053, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 95
+      objectReference: {fileID: 0}
     - target: {fileID: 4341747743209785548, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
       propertyPath: m_InitialEventNameOverriden
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5668050055056675285, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: m_TagString
+      value: BoxHitter
       objectReference: {fileID: 0}
     - target: {fileID: 6300176647214466851, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -20885,12 +20897,20 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6989535000953407631, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: m_TagString
+      value: BoxHitter
+      objectReference: {fileID: 0}
     - target: {fileID: 7868582486644387390, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
       propertyPath: m_InitialEventNameOverriden
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8753123763543477993, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8768755716169071386, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
+      propertyPath: score
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8768755716169071386, guid: 65d9f0149c4a97a40b27b7c0207d24f1, type: 3}
