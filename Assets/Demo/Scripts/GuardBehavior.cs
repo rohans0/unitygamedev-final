@@ -102,10 +102,10 @@ public class GuardBehavior : MonoBehaviour
         gameObject.transform.GetChild(0).gameObject.SetActive(false); // disables the vision cone
 
 
-		switch (guardType)
+		switch (guardType) // might be unneeded
         {
             case GuardType.Shooter:
-                GetComponent<ShooterGuard>().playerPos = playerPos;
+                // GetComponent<ShooterGuard>().playerPos = playerPos;
                 break;
             default:
                 //lineRenderer.enabled = true;
@@ -115,7 +115,7 @@ public class GuardBehavior : MonoBehaviour
         }
     }
 
-    private Vector3 GetPlayerPos()
+    public Vector3 GetPlayerPos()
     {
 		return (
 			player.GetComponent<Movement>().redSwinging ?
@@ -151,7 +151,17 @@ public class GuardBehavior : MonoBehaviour
         if (other.CompareTag("Connector"))
         {
             GetComponent<Rigidbody2D>().simulated = false;
-            other.transform.parent.GetComponent<PlayerManager>().score+=5;
+
+            switch (guardType) // might be unneeded
+            {
+                case GuardType.Shooter:
+                    other.transform.parent.GetComponent<PlayerManager>().score+=50;
+                    break;
+                default:
+                    other.transform.parent.GetComponent<PlayerManager>().score+=5;
+                    break;
+            }
+
             currentState = GuardState.Stunned;
             //play audio here!!
             audioSource.PlayOneShot(GuardDeathSound, 1);

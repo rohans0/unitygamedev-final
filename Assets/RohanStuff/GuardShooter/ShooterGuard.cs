@@ -5,8 +5,8 @@ public class ShooterGuard : MonoBehaviour
 {
     [SerializeField] private Sprite bulletSprite;
     [SerializeField] private LayerMask bulletLayer;
-    // [SerializeField] private Sprite eggPrefab; easter egg randomly can be deadly egg bullet?
-	public Vector3 playerPos = Vector3.zero;
+    // [SerializeField] private Sprite eggPrefab;
+	private Vector3 playerPos = Vector3.zero;
     private float eggReloadTimer = 0;
 	private GuardBehavior behavior = null;
 
@@ -22,10 +22,13 @@ public class ShooterGuard : MonoBehaviour
 			eggReloadTimer += Time.deltaTime;
 			if (eggReloadTimer > 0.2f)
 			{
+				playerPos = behavior.GetPlayerPos();
 				eggReloadTimer = 0;
-				GameObject egg = new GameObject();
-				egg.layer = (int)Mathf.Log(bulletLayer,2);
-				egg.transform.position = transform.position;
+                GameObject egg = new()
+                {
+                    layer = (int)Mathf.Log(bulletLayer, 2)
+                };
+                egg.transform.position = transform.position;
 				egg.transform.rotation = Quaternion.Euler(0,0,
 						Mathf.Atan2(
 							transform.position.y - playerPos.y,

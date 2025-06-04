@@ -33,7 +33,8 @@ public class Egg : MonoBehaviour
         if (timeTilDisabled > 1 && (c.gameObject.tag == "Red Player" || c.gameObject.tag == "Blue Player"))
         {
             c.gameObject.GetComponentInParent<PlayerManager>().score--;
-            timeTilDisabled = .2f;
+            c.gameObject.GetComponentInParent<PlayerManager>().TakeHit();
+            timeTilDisabled = 0;
 		   //          c.gameObject.GetComponentInParent<PlayerManager>().TakeHit();
 		   // timeTilDisabled = .0f;
         }
