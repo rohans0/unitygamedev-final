@@ -60,25 +60,25 @@ public class Movement : MonoBehaviour
     void Update()
     {
         //Handle swing size changes
-        if(Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             swingDistance -= distanceChangeSpeed * Time.deltaTime;
         }
-        if(Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             swingDistance += distanceChangeSpeed * Time.deltaTime;
         }
-        if(swingDistance < swingDistanceBounds.x) swingDistance = swingDistanceBounds.x;
-        if(swingDistance > swingDistanceBounds.y) swingDistance = swingDistanceBounds.y;
+        if (swingDistance < swingDistanceBounds.x) swingDistance = swingDistanceBounds.x;
+        if (swingDistance > swingDistanceBounds.y) swingDistance = swingDistanceBounds.y;
 
 
 
         //Handle swapping swingers
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             angle += 180f;
             //Move new stationary player slightly away from wall to prevent bugs
-            if(redSwinging)
+            if (redSwinging)
             {
                 //Get current angle between players
                 Vector2 pivot = blue.transform.position;
@@ -91,7 +91,7 @@ public class Movement : MonoBehaviour
                 Vector2 desiredPos = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
 
                 RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
-                if(hit)
+                if (hit)
                 {
                     red.transform.position = hit.point + (hit.normal * wallSpacing);
                 }
@@ -110,7 +110,7 @@ public class Movement : MonoBehaviour
                 Vector2 desiredPos = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
 
                 RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
-                if(hit)
+                if (hit)
                 {
                     blue.transform.position = hit.point + (hit.normal * wallSpacing);
                 }
@@ -122,10 +122,10 @@ public class Movement : MonoBehaviour
             audioSource.PlayOneShot(PlayerSwitchSound, 1);
         }
 
-        
+
 
         //Update functions depending on which is swinging
-        if(redSwinging) RedSwingCasted();
+        if (redSwinging) RedSwingCasted();
         else BlueSwingCasted();
     }
 
@@ -143,17 +143,17 @@ public class Movement : MonoBehaviour
         Vector2 desiredPos = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
 
         RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
-        if(hit)
+        if (hit)
         {
             Vector2 hitPointSpaced = hit.point;// + (hit.normal * wallSpacing);
             //Do final interpolation
-            if(Vector2.Distance(hitPointSpaced, red.transform.position) > maxMove * Time.deltaTime) red.transform.position = (Vector2)red.transform.position + (hitPointSpaced - (Vector2)red.transform.position).normalized * maxMove * Time.deltaTime;
+            if (Vector2.Distance(hitPointSpaced, red.transform.position) > maxMove * Time.deltaTime) red.transform.position = (Vector2)red.transform.position + (hitPointSpaced - (Vector2)red.transform.position).normalized * maxMove * Time.deltaTime;
             else red.transform.position = hitPointSpaced;
         }
         else
         {
             //Do final interpolation
-            if(Vector2.Distance(desiredPos, red.transform.position) > maxMove * Time.deltaTime) red.transform.position = (Vector2)red.transform.position + (desiredPos - (Vector2)red.transform.position).normalized * maxMove * Time.deltaTime;
+            if (Vector2.Distance(desiredPos, red.transform.position) > maxMove * Time.deltaTime) red.transform.position = (Vector2)red.transform.position + (desiredPos - (Vector2)red.transform.position).normalized * maxMove * Time.deltaTime;
             else red.transform.position = desiredPos;
         }
     }
@@ -170,24 +170,24 @@ public class Movement : MonoBehaviour
         Vector2 desiredPos = pivot + (swingDistance * new Vector2(Mathf.Cos(Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle)));
 
         RaycastHit2D hit = Physics2D.Raycast(pivot, (desiredPos - pivot).normalized, swingDistance, wallLayer);
-        if(hit)
+        if (hit)
         {
             Vector2 hitPointSpaced = hit.point;// + (hit.normal * wallSpacing);
             //Do final interpolation
-            if(Vector2.Distance(hitPointSpaced, blue.transform.position) > maxMove * Time.deltaTime) blue.transform.position = (Vector2)blue.transform.position + (hitPointSpaced - (Vector2)blue.transform.position).normalized * maxMove * Time.deltaTime;
+            if (Vector2.Distance(hitPointSpaced, blue.transform.position) > maxMove * Time.deltaTime) blue.transform.position = (Vector2)blue.transform.position + (hitPointSpaced - (Vector2)blue.transform.position).normalized * maxMove * Time.deltaTime;
             else blue.transform.position = hitPointSpaced;
         }
         else
         {
             //Do final interpolation
-            if(Vector2.Distance(desiredPos, blue.transform.position) > maxMove * Time.deltaTime) blue.transform.position = (Vector2)blue.transform.position + (desiredPos - (Vector2)blue.transform.position).normalized * maxMove * Time.deltaTime;
+            if (Vector2.Distance(desiredPos, blue.transform.position) > maxMove * Time.deltaTime) blue.transform.position = (Vector2)blue.transform.position + (desiredPos - (Vector2)blue.transform.position).normalized * maxMove * Time.deltaTime;
             else blue.transform.position = desiredPos;
         }
     }
 
     void UpdateVisuals()
     {
-        if(redSwinging)
+        if (redSwinging)
         {
             red.GetComponent<SpriteRenderer>().sprite = redSwing;
             blue.GetComponent<SpriteRenderer>().sprite = blueStill;
@@ -198,4 +198,14 @@ public class Movement : MonoBehaviour
             blue.GetComponent<SpriteRenderer>().sprite = blueSwing;
         }
     }
+
+    public float getSpeed()
+    {
+        return swingSpeed;
+    }
+    public void setSpeed(float newSpeed)
+    {
+        swingSpeed = newSpeed;
+    }
+
 }

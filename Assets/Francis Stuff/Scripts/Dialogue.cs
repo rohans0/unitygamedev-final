@@ -9,10 +9,13 @@ public class Dialogue : MonoBehaviour
     public float textSpeed;
     private int index;
     private bool isDialogueActive = false;
+    //private bool isTyping = false;
+    private float oldSpeed;
 
     void Start()
     {
         textComponent.text = string.Empty;
+        oldSpeed = Movement.Instance.getSpeed();
     }
 
     // Update is called once per frame
@@ -34,6 +37,7 @@ public class Dialogue : MonoBehaviour
 
     public void StartDialogue()
     {
+        Movement.Instance.setSpeed(0);
         if (isDialogueActive) return;
         isDialogueActive = true;
         index = 0;
@@ -44,6 +48,7 @@ public class Dialogue : MonoBehaviour
     {
         if (index == 0)
         {
+            
             yield return new WaitForSeconds(1.2f);
         }
         else
@@ -80,6 +85,7 @@ public class Dialogue : MonoBehaviour
     
     public IEnumerator DialogDelete()
     {
+        Movement.Instance.setSpeed(oldSpeed);
         textComponent.text = string.Empty;
         TextBoxVisual textBoxVisual = gameObject.transform.GetChild(3).GetComponent<TextBoxVisual>();
         textBoxVisual.GoAway();
