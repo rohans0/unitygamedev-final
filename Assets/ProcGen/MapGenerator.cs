@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using NavMeshPlus.Components;
 using Unity.Mathematics;
 using UnityEngine;
+using System.Collections;
 
 public class MapGenerator : MonoBehaviour
 {

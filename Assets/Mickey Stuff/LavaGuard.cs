@@ -66,6 +66,9 @@ public class LavaGuard : MonoBehaviour
         }
         else if (currentState == GuardState.Idle) IdleUpdate();
         else if (currentState == GuardState.Chase) ChaseUpdate();
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, 0f);
+        transform.localEulerAngles = new Vector3(0f, 0f, transform.localEulerAngles.z);
     }
 
     void ThrowUpdate()
