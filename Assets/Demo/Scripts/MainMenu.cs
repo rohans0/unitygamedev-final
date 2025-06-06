@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 	public GameObject levelMenuPanel;
 	// public GameObject settingsMenuPanel; Maybe add later (need to utilize data persistence between scenes and mess around with how audio managed)
 	public GameObject playPanel;
+	public GameObject creditsPanel;
 
 	private void Awake()
 	{
@@ -17,15 +18,16 @@ public class MainMenu : MonoBehaviour
 		// playPanel = GameObject.Find("PlayPanel");
 	}
 
-    private void Start()
-    {
-    	// Ensure only the main menu is active at the start
+	private void Start()
+	{
+		// Ensure only the main menu is active at the start
 		mainMenuPanel.SetActive(true);
 		levelMenuPanel.SetActive(false);
 		// settingsMenuPanel.SetActive(false);
-		playPanel.SetActive(false);   
-    }
-    public void LoadScene(int sceneBuildIndex)
+		playPanel.SetActive(false);
+		creditsPanel.SetActive(false);
+	}
+	public void LoadScene(int sceneBuildIndex)
 	{
 		// find in File > Build Profiles
 		SceneManager.LoadScene(sceneBuildIndex);
@@ -36,6 +38,7 @@ public class MainMenu : MonoBehaviour
 		mainMenuPanel.SetActive(false);
 		// settingsMenuPanel.SetActive(false);
 		playPanel.SetActive(false);
+		creditsPanel.SetActive(false);
 		levelMenuPanel.SetActive(true);
 	}
 
@@ -44,6 +47,7 @@ public class MainMenu : MonoBehaviour
 		mainMenuPanel.SetActive(false);
 		levelMenuPanel.SetActive(false);
 		playPanel.SetActive(false);
+		creditsPanel.SetActive(false);
 		// settingsMenuPanel.SetActive(true);
 	}
 
@@ -52,6 +56,7 @@ public class MainMenu : MonoBehaviour
 		levelMenuPanel.SetActive(false);
 		// settingsMenuPanel.SetActive(false);
 		playPanel.SetActive(false);
+		creditsPanel.SetActive(false);
 		mainMenuPanel.SetActive(true);
 	}
 
@@ -59,6 +64,7 @@ public class MainMenu : MonoBehaviour
 	{
 		mainMenuPanel.SetActive(false);
 		levelMenuPanel.SetActive(false);
+		creditsPanel.SetActive(false);
 		// settingsMenuPanel.SetActive(false);
 		playPanel.SetActive(true);
 	}
@@ -67,6 +73,15 @@ public class MainMenu : MonoBehaviour
 	{
 		levelMenuPanel.SetActive(false);
 		playPanel.SetActive(false);
+		creditsPanel.SetActive(false);
 		mainMenuPanel.SetActive(true);
+	}
+
+	public void LoadCredits()
+	{ 
+		mainMenuPanel.SetActive(false);
+		levelMenuPanel.SetActive(false);
+		playPanel.SetActive(false);
+		creditsPanel.SetActive(true);
 	}
 }
