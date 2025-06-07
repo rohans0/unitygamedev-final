@@ -37,11 +37,22 @@ public class Dialogue : MonoBehaviour
 
     public void StartDialogue()
     {
-        Movement.Instance.setSpeed(0);
+        if (lines == null || lines.Length == 0)
+        {
+            Debug.LogWarning("Dialogue lines are empty.");
+            return;
+        }
+
         if (isDialogueActive) return;
+
+        // oldSpeed = Movement.Instance.getSpeed();
+        Movement.Instance.setSpeed(0);
+
         isDialogueActive = true;
         index = 0;
+
         StartCoroutine(TypeLine());
+        textComponent.text = string.Empty;
     }
 
     public IEnumerator TypeLine()
@@ -80,12 +91,12 @@ public class Dialogue : MonoBehaviour
     }
     public void DeleteHelper()
     {
+        Movement.Instance.setSpeed(oldSpeed);
         StartCoroutine(DialogDelete());
     }
     
     public IEnumerator DialogDelete()
     {
-        Movement.Instance.setSpeed(oldSpeed);
         textComponent.text = string.Empty;
         TextBoxVisual textBoxVisual = gameObject.transform.GetChild(3).GetComponent<TextBoxVisual>();
         textBoxVisual.GoAway();
@@ -96,3 +107,4 @@ public class Dialogue : MonoBehaviour
         gameObject.SetActive(false);
     }
 }
+
