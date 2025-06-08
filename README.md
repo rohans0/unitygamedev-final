@@ -1,7 +1,7 @@
 # unitygamedev-final
 
 ## References (Assets Used)
-#### freesound.org
+**-----freesound.org-----**
 Wet Splat
 
 Door Open
@@ -16,11 +16,11 @@ Pressure plate on / off
 
 Background noise
 
-**Source Enginer**
+**-----Source Engine-----**
 
 healing sound effect
 
-**Nav Mesh Plus**
+**------Nav Mesh Plus-----**
 
 https://github.com/h8man/NavMeshPlus
 
