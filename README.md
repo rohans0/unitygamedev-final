@@ -1,5 +1,23 @@
 # unitygamedev-final
 
+## References (Assets Used)
+**freesound.org**
+Wet Splat
+Door Open
+Guard Death
+Coin Pickup
+Heal pickup
+Pressure plate on / off
+Background noise
+
+**Source Enginer**
+healing sound effect
+
+**Nav Mesh Plus**
+https://github.com/h8man/NavMeshPlus
+
+
+
 ## Team Reflection
 **What went well:** Our teamwork process was quite refined from the start of this project, which really assisted in helping things run smoothly while only meeting in-person 2 times per week. Generally, we would brainstorm a list of tasks along with a deadline, then divide the work evenly. After that, we would do our independent work then consolidate it all about a day before our deadline. We also all shared a passion for the project which helped to keep us motivated throughout the process.
 
