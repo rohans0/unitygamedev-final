@@ -1,5 +1,9 @@
 # Stuck Together
 
+**Unity ver. 6000.0.44f1**
+
+**Webpage (itch.io):** https://stucktogether.itch.io/stuck-together
+
 ## References (Assets Used)
 **-----freesound.org-----**
 
