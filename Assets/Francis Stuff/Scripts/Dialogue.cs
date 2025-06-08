@@ -37,6 +37,8 @@ public class Dialogue : MonoBehaviour
 
     public void StartDialogue()
     {
+        if (Movement.Instance.getSpeed() == 0) return;
+        
         if (lines == null || lines.Length == 0)
         {
             Debug.LogWarning("Dialogue lines are empty.");
@@ -91,18 +93,22 @@ public class Dialogue : MonoBehaviour
     }
     public void DeleteHelper()
     {
+        isDialogueActive = false;
         Movement.Instance.setSpeed(oldSpeed);
         StartCoroutine(DialogDelete());
     }
     
     public IEnumerator DialogDelete()
     {
+        isDialogueActive = false;
         textComponent.text = string.Empty;
         TextBoxVisual textBoxVisual = gameObject.transform.GetChild(3).GetComponent<TextBoxVisual>();
         textBoxVisual.GoAway();
         //Debug.Log("going away");
 
         yield return new WaitForSeconds(0.777f);
+        Movement.Instance.setSpeed(oldSpeed);
+        isDialogueActive = false;
         //Debug.Log("waited 3 seconds");
         gameObject.SetActive(false);
     }
