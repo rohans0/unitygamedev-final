@@ -4,7 +4,7 @@
 
 **Webpage (itch.io):** https://stucktogether.itch.io/stuck-together
 
-**Playtesting Report:** (see playtestReport.pdf in this repository)
+**Playtesting Report:** (see Playtest-Report.pdf in this repository)
 
 ## References (Assets Used)
 **-----freesound.org-----**
